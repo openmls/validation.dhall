@@ -1,5 +1,9 @@
 let Prelude = https://prelude.dhall-lang.org/v22.0.0/package.dhall
 
+let Status
+    : Type
+    = < Unknown | Missing | Partial | Complete >
+
 let Notes
     : Type
     = { notes : List Text }
@@ -67,19 +71,21 @@ let Check
     : Type
     = { id : Natural
       , desc : RfcRef
+      , status : Status
       , code : CodeRefs
       , test : CodeRefs
       , notes : Notes
       }
 
 let Check/new
-    : Natural -> RfcRef -> CodeRefs -> CodeRefs -> Notes -> Check
+    : Natural -> RfcRef -> Status -> CodeRefs -> CodeRefs -> Notes -> Check
     = \(id : Natural) ->
       \(desc : RfcRef) ->
+      \(status : Status) ->
       \(code : CodeRefs) ->
       \(test : CodeRefs) ->
       \(notes : Notes) ->
-        { id, desc, notes, code, test }
+        { id, desc, status, notes, code, test }
 
 let CheckSet
     : Type
@@ -117,4 +123,5 @@ in  { CodeRef
     , Check/new
     , CheckSet
     , CheckSet/new
+    , Status
     }
