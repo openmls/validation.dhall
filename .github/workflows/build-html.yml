@@ -16,12 +16,10 @@ jobs:
 
       - name: build html file
         run: |
-          sudo apt install -y dhall
-          mkdir html
-          dhall text <generate.dhall >html/openmls-validation-dashboard.html
+          dhall text <generate.dhall >openmls-validation-dashboard.html
 
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: openmls-validation-dashboard.html
-          path: html/openmls-validation-dashboard.html
+          path: openmls-validation-dashboard.html
