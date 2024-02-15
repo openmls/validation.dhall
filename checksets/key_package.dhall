@@ -1,4 +1,4 @@
-let types = ./types.dhall
+let types = ../types.dhall
 
 let id = 2
 
@@ -69,3 +69,4 @@ let checks =
       ]
 
 in  types.CheckSet/new id desc checks
+

@@ -1,4 +1,4 @@
-let types = ./types.dhall
+let types = ../types.dhall
 
 let id = 4
 
@@ -21,7 +21,7 @@ let desc = types.RfcRef/new descText [ "section-12.2-1", "section-12.2-5" ]
 let checks =
       [ types.Check/new
           1
-          ( RfcRef/single
+          ( types.RfcRef/single
               "Exactly one ExternalInit"
               "section-12.2-6.1"
           )
@@ -31,7 +31,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           2
-          ( RfcRef/single
+          ( types.RfcRef/single
               ''
               At most one Remove proposal, with which the joiner removes an old
               version of themselves. If a Remove proposal is present, then the
@@ -49,7 +49,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           3
-          ( RfcRef/single
+          ( types.RfcRef/single
               "Zero or more PreSharedKey proposals"
               "section-12.2-6.3"
           )
@@ -59,7 +59,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           4
-          ( RfcRef/single
+          ( types.RfcRef/single
               "No other proposals"
               "section-12.2-6.4"
           )
@@ -69,4 +69,5 @@ let checks =
           types.Notes/empty
       ]
 
-in  types/CheckSet/new id desc checks
+in  types.CheckSet/new id desc checks
+
