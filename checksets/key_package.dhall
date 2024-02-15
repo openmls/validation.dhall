@@ -2,13 +2,15 @@ let types = ../types.dhall
 
 let id = 2
 
+let name = "Key Package Validation"
+
 let descText =
       ''
-      # Key Package Validation
-
-      The validity of a KeyPackage needs to be verified at a few stages:
-      - When a KeyPackage is downloaded by a group member, before it is used to add the client to the group
-      -When a KeyPackage is received by a group member in an Add message
+      <p>The validity of a KeyPackage needs to be verified at a few stages:</p>
+      <ul>
+      <li>When a KeyPackage is downloaded by a group member, before it is used to add the client to the group</li>
+      <li>When a KeyPackage is received by a group member in an Add message</li>
+      </ul
       ''
 
 let desc = types.RfcRef/single descText "section-10.1"
@@ -68,5 +70,5 @@ let checks =
           types.Notes/empty
       ]
 
-in  types.CheckSet/new id desc checks
+in  types.CheckSet/new id name desc checks
 

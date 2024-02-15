@@ -86,11 +86,15 @@ let CheckSet/table
           , attributes = XML.emptyAttributes
           , content =
             [ XML.element
+                { name = "h2"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text checkSet.name ]
+                }
+            , XML.element
                 { name = "p"
                 , attributes = XML.emptyAttributes
                 , content =
-                      [ XML/wrap "pre" (XML.text checkSet.desc.text) ]
-                    # [ RfcRef/links checkSet.desc ]
+                  [ XML.rawText checkSet.desc.text, RfcRef/links checkSet.desc ]
                 }
             , XML.element
                 { name = "table"
@@ -127,7 +131,7 @@ let outerTemplate
             , XML.element
                 { name = "body"
                 , attributes = XML.emptyAttributes
-                , content =  body 
+                , content = body
                 }
             ]
           }

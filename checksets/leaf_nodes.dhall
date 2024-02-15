@@ -2,14 +2,16 @@ let types = ../types.dhall
 
 let id = 1
 
+let name = "Leaf Node Validation"
+
 let descText =
       ''
-      # Leaf Node Validation
-
-      The validity of a LeafNode needs to be verified at the following stages:
-      - When a LeafNode is downloaded in a KeyPackage, before it is used to add the client to the group
-      - When a LeafNode is received by a group member in an Add, Update, or Commit message
-      - When a client validates a ratchet tree, e.g., when joining a group or after processing a Commit
+      <p>The validity of a LeafNode needs to be verified at the following stages:</p>
+      <ul>
+      <li>When a LeafNode is downloaded in a KeyPackage, before it is used to add the client to the group</li>
+      <li>When a LeafNode is received by a group member in an Add, Update, or Commit message</li>
+      <li>When a client validates a ratchet tree, e.g., when joining a group or after processing a Commit</li>
+      </ul>
       ''
 
 let desc = types.RfcRef/single descText "section-7.3"
@@ -179,4 +181,4 @@ let checks =
         ]
       : List types.Check
 
-in  types.CheckSet/new id desc checks
+in  types.CheckSet/new id name desc checks

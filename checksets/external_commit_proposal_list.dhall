@@ -2,18 +2,22 @@ let types = ../types.dhall
 
 let id = 4
 
+let name = "External Commit Proposal List Validation"
+
 let descText =
       ''
-      # Proposal List Validation
-
+      <p>
       A group member creating a `Commit` and a group member processing a `Commit`
       MUST verify that the list of committed proposals is valid using one of the
       following procedures, depending on whether the `Commit` is external or not.
       If the list of proposals is invalid, then the Commit message MUST be
       rejected as invalid.
+      </p>
 
+      <p>
       For an external Commit, the list is valid if it contains only the following
       proposals (not necessarily in this order):
+      </p>
       ''
 
 let desc = types.RfcRef/new descText [ "section-12.2-1", "section-12.2-5" ]
@@ -69,5 +73,5 @@ let checks =
           types.Notes/empty
       ]
 
-in  types.CheckSet/new id desc checks
+in  types.CheckSet/new id name desc checks
 

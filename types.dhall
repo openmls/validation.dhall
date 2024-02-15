@@ -92,11 +92,12 @@ let Check/new
 
 let CheckSet
     : Type
-    = { id : Natural, desc : RfcRef, checks : List Check }
+    = { id : Natural, name : Text, desc : RfcRef, checks : List Check }
 
 let CheckSet/new
-    : Natural -> RfcRef -> List Check -> CheckSet
+    : Natural -> Text -> RfcRef -> List Check -> CheckSet
     = \(id : Natural) ->
+      \(name : Text) ->
       \(desc : RfcRef) ->
       \(checks : List Check) ->
         let checks =
@@ -106,7 +107,7 @@ let CheckSet/new
                 (\(check : Check) -> check with id = check.id + 100 * id)
                 checks
 
-        in  { id, desc, checks }
+        in  { id, name, desc, checks }
 
 in  { CodeRef
     , CodeRef/new
