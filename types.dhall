@@ -1,4 +1,4 @@
-let Prelude = https://prelude.dhall-lang.org/v22.0.0/package.dhall
+let Prelude = ./prelude.dhall
 
 let Status
     : Type
@@ -124,6 +124,35 @@ let CheckSet/new
 
         in  { id, name, desc, checks }
 
+let Natural/equals
+    {- tests whether two natural numbers are equal by testing whether both
+    -- a-b and b-a (clamping!) are zero -}
+    : Natural -> Natural -> Bool
+    = \(a : Natural) ->
+      \(b : Natural) ->
+        let b_minus_a = Natural/subtract a b
+
+        let a_minus_b = Natural/subtract b a
+
+        let a_lte_b = Natural/isZero a_minus_b
+
+        let b_lte_a = Natural/isZero b_minus_a
+
+        in  a_lte_b && b_lte_a
+
+let CheckSet/checkById
+    : CheckSet -> Natural -> Optional Check
+    = \(checkSet : CheckSet) ->
+      \(id : Natural) ->
+        Prelude.List.index
+          0
+          Check
+          ( Prelude.List.filter
+              Check
+              ((\(check : Check) -> Natural/equals id check.id) : Check -> Bool)
+              checkSet.checks
+          )
+
 in  { CodeRef
     , CodeRef/new
     , CodeRefs
@@ -131,6 +160,7 @@ in  { CodeRef
     , CodeRefs/empty
     , Notes
     , Notes/new
+    , Notes/single
     , Notes/empty
     , Url
     , Url/new
@@ -142,5 +172,7 @@ in  { CodeRef
     , Check/new
     , CheckSet
     , CheckSet/new
+    , CheckSet/checkById
     , Status
+    , Status/show
     }

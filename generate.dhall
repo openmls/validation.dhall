@@ -1,4 +1,4 @@
-let Prelude = https://prelude.dhall-lang.org/v22.0.0/package.dhall
+let Prelude = ./prelude.dhall
 
 let Types = ./types.dhall
 
