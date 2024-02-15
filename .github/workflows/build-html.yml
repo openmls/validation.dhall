@@ -18,11 +18,10 @@ jobs:
         run: |
           sudo apt install -y dhall
           mkdir html
-          dhall text <generate.dhall >html/index.html
-          cp axist.css html/
+          dhall text <generate.dhall >html/openmls-validation-dashboard.html
 
-      - name: Step 3 - Use the Upload Artifact GitHub Action
+      - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: validation-overview
-          path: html
+          name: openmls-validation-dashboard.html
+          path: html/openmls-validation-dashboard.html

@@ -190,12 +190,10 @@ let outerTemplate
                       , attributes = XML.emptyAttributes
                       , content = [ XML.text title ]
                       }
-                  , XML.leaf
-                      { name = "link"
-                      , attributes =
-                        [ XML.attribute "rel" "stylesheet"
-                        , XML.attribute "href" "axist.css"
-                        ]
+                  , XML.element
+                      { name = "style"
+                      , attributes = [ XML.attribute "type" "text/css" ]
+                      , content = [ XML.rawText ./axist.css as Text ]
                       }
                   ]
                 }
