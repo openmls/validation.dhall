@@ -5,11 +5,10 @@ on:
     branches: [ main ]
 
 jobs:
-
-  archive-build-artifacts:
+  upload-validation-dashboard:
     runs-on: ubuntu-latest
     steps:
-
+      - uses: actions/checkout@v4
       - name: build html file
         run: |
           sudo apt install -y dhall
