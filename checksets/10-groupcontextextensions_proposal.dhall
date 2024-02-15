@@ -44,8 +44,9 @@ let checks =
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/new
-              "don't ask me why this isn't in section 12.1.7..."
-              "reported in https://github.com/xmtp/openmls/pull/19"
+              [ "don't ask me why this isn't in section 12.1.7..."
+              , "reported in https://github.com/xmtp/openmls/pull/19"
+              ]
           )
       ]
 

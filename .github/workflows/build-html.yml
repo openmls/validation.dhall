@@ -9,12 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+
+      - uses: dhall-lang/setup-dhall@v4
         with:
-          repository: "dhall-lang/dhall-lang"
-          path: "dhall"
-          ref: 'v22.0.0'
-          sparse-checkout: 'Prelude'
+          version: '1.41.0'
+
       - name: build html file
         run: |
           sudo apt install -y dhall
