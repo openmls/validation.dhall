@@ -4,6 +4,17 @@ let Status
     : Type
     = < Unknown | Missing | Partial | Complete >
 
+let Status/show
+    : Status -> Text
+    = \(status : Status) ->
+        merge
+          { Unknown = "Unknown"
+          , Missing = "Missing"
+          , Partial = "Partial"
+          , Complete = "Complete"
+          }
+          status
+
 let Notes
     : Type
     = { notes : List Text }

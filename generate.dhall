@@ -13,4 +13,4 @@ let checkSetHtmls =
 
 let page = Html.outerTemplate "OpenMLS validation status" checkSetHtmls
 
-in  XML.render page
+in  "<!DOCTYPE html>" ++ XML.render page

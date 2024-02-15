@@ -24,6 +24,16 @@ let XML/wrap
           , content = [ innerElement ]
           }
 
+let XML/wrapList
+    : Text -> List XML.Type -> XML.Type
+    = \(elementName : Text) ->
+      \(innerElements : List XML.Type) ->
+        XML.element
+          { name = elementName
+          , attributes = XML.emptyAttributes
+          , content = innerElements
+          }
+
 let XML/asUl
     : Text -> List XML.Type -> XML.Type
     = \(className : Text) ->
@@ -63,20 +73,67 @@ let Check/tableRow
                 , content = [ XML.text check.desc.text ]
                 }
 
-        let rfcLinks = RfcRef/links check.desc
-
         let rfcLinksCell =
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ rfcLinks ]
+                , content = [ RfcRef/links check.desc ]
+                }
+
+        let statusCell =
+              XML.element
+                { name = "td"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text (Types.Status/show check.status) ]
+                }
+
+        let notesCell =
+              XML.element
+                { name = "td"
+                , attributes = XML.emptyAttributes
+                , content =
+                    Prelude.List.map Text XML.Type XML.text check.notes.notes
                 }
 
         in  XML.element
               { name = "tr"
               , attributes = [ XML.attribute "id" (Natural/show check.id) ]
-              , content = [ idCell, descCell, rfcLinksCell ]
+              , content =
+                [ idCell, statusCell, descCell, rfcLinksCell, notesCell ]
               }
+
+let thead =
+      XML/wrap
+        "thead"
+        ( XML/wrapList
+            "tr"
+            [ XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text "id" ]
+                }
+            , XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text "status" ]
+                }
+            , XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text "description" ]
+                }
+            , XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text "links" ]
+                }
+            , XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text "notes" ]
+                }
+            ]
+        )
 
 let CheckSet/table
     : Types.CheckSet -> XML.Type
@@ -91,8 +148,8 @@ let CheckSet/table
                 , content = [ XML.text checkSet.name ]
                 }
             , XML.element
-                { name = "p"
-                , attributes = XML.emptyAttributes
+                { name = "div"
+                , attributes = [XML.attribute "class" "check-set-desc" ]
                 , content =
                   [ XML.rawText checkSet.desc.text, RfcRef/links checkSet.desc ]
                 }
@@ -100,11 +157,16 @@ let CheckSet/table
                 { name = "table"
                 , attributes = XML.emptyAttributes
                 , content =
-                    Prelude.List.map
-                      Types.Check
-                      XML.Type
-                      Check/tableRow
-                      checkSet.checks
+                  [ thead
+                  , XML/wrapList
+                      "tbody"
+                      ( Prelude.List.map
+                          Types.Check
+                          XML.Type
+                          Check/tableRow
+                          checkSet.checks
+                      )
+                  ]
                 }
             ]
           }
@@ -125,6 +187,13 @@ let outerTemplate
                       { name = "title"
                       , attributes = XML.emptyAttributes
                       , content = [ XML.text title ]
+                      }
+                  , XML.leaf
+                      { name = "link"
+                      , attributes =
+                        [ XML.attribute "rel" "stylesheet"
+                        , XML.attribute "href" "axist.css"
+                        ]
                       }
                   ]
                 }
