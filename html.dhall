@@ -149,7 +149,7 @@ let CheckSet/table
                 }
             , XML.element
                 { name = "div"
-                , attributes = [XML.attribute "class" "check-set-desc" ]
+                , attributes = [ XML.attribute "class" "check-set-desc" ]
                 , content =
                   [ XML.rawText checkSet.desc.text, RfcRef/links checkSet.desc ]
                 }

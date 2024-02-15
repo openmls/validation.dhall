@@ -17,16 +17,16 @@ let descText =
 let desc = types.RfcRef/single descText "section-7.3"
 
 let checks =
-        [ { id = 1
-          , desc =
-              types.RfcRef/single
+        [ types.Check/new
+            1
+            ( types.RfcRef/single
                 "Verify that the credential in the LeafNode is valid, as described in Section 5.3.1."
                 "section-7.3-4.1"
-          , status = types.Status.Unknown
-          , test = types.CodeRefs/empty
-          , code = types.CodeRefs/empty
-          , notes = types.Notes/empty
-          }
+            )
+            types.Status.Unknown
+            types.CodeRefs/empty
+            types.CodeRefs/empty
+            types.Notes/empty
         , types.Check/new
             2
             ( types.RfcRef/single
@@ -43,10 +43,14 @@ let checks =
                 "Verify that the LeafNode is compatible with the group's parameters. If the GroupContext has a required_capabilities extension, then the required extensions, proposals, and credential types MUST be listed in the LeafNode's capabilities field."
                 "section-7.3-4.3"
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+            )
         , types.Check/new
             4
             ( types.RfcRef/single
@@ -161,10 +165,14 @@ let checks =
                 ''
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.1" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+            )
         , types.Check/new
             12
             ( types.RfcRef/new
@@ -174,10 +182,14 @@ let checks =
                 ''
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.2" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+            )
         ]
       : List types.Check
 

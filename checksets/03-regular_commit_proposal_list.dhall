@@ -67,10 +67,14 @@ let checks =
               ''
               "section-12.2-3.4"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           5
           ( types.RfcRef/single
@@ -81,10 +85,14 @@ let checks =
               ''
               "section-12.2-3.5"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           6
           ( types.RfcRef/single
@@ -96,10 +104,14 @@ let checks =
               ''
               "section-12.2-3.6"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           7
           ( types.RfcRef/single
@@ -134,20 +146,28 @@ let checks =
               ''
               "section-12.2-3.9"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           10
           ( types.RfcRef/single
               "It contains an ExternalInit proposal."
               "section-12.2-3.10"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           11
           ( types.RfcRef/single
@@ -159,10 +179,14 @@ let checks =
               ''
               "section-12.2-3.11"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           12
           ( types.RfcRef/single
@@ -180,4 +204,3 @@ let checks =
       ]
 
 in  types.CheckSet/new id name desc checks
-

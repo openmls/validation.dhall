@@ -71,4 +71,3 @@ let checks =
       ]
 
 in  types.CheckSet/new id name desc checks
-

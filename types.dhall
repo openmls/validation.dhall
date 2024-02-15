@@ -23,6 +23,10 @@ let Notes/new
     : List Text -> Notes
     = \(notes : List Text) -> { notes }
 
+let Notes/single
+    : Text -> Notes
+    = \(note : Text) -> Notes/new [ note ]
+
 let Notes/empty
     : Notes
     = Notes/new ([] : List Text)

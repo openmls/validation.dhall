@@ -25,10 +25,7 @@ let desc = types.RfcRef/new descText [ "section-12.2-1", "section-12.2-5" ]
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
-              "Exactly one ExternalInit"
-              "section-12.2-6.1"
-          )
+          (types.RfcRef/single "Exactly one ExternalInit" "section-12.2-6.1")
           types.Status.Unknown
           types.CodeRefs/empty
           types.CodeRefs/empty
@@ -47,10 +44,14 @@ let checks =
               ''
               "section-12.2-6.2"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              reported in https://github.com/xmtp/openmls/pull/19
+              ''
+          )
       , types.Check/new
           3
           ( types.RfcRef/single
@@ -63,10 +64,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           4
-          ( types.RfcRef/single
-              "No other proposals"
-              "section-12.2-6.4"
-          )
+          (types.RfcRef/single "No other proposals" "section-12.2-6.4")
           types.Status.Unknown
           types.CodeRefs/empty
           types.CodeRefs/empty
@@ -74,4 +72,3 @@ let checks =
       ]
 
 in  types.CheckSet/new id name desc checks
-
