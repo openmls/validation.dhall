@@ -68,4 +68,4 @@ let checks =
           types.Notes/empty
       ]
 
-in  types/CheckSet/new id desc checks
+in  types.CheckSet/new id desc checks

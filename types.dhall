@@ -59,12 +59,15 @@ let RfcRef/new
     = \(text : Text) -> \(rfcFragments : List Text) -> { text, rfcFragments }
 
 let RfcRef/urls
-    : RfcRef -> List Text
+    : RfcRef -> List Url
     = \(ref : RfcRef) ->
         Prelude.List.map
           Text
-          Text
-          (\(fragment : Text) -> "https://blubb${fragment}")
+          Url
+          ( \(fragment : Text) ->
+              { url = "https://www.rfc-editor.org/rfc/rfc9420.html#${fragment}"
+              }
+          )
           ref.rfcFragments
 
 let Check
