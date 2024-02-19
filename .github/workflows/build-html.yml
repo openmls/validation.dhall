@@ -1,11 +1,11 @@
-name: Build HTML File
+name: Build and Deploy HTML Dashboard
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  upload-validation-dashboard:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,10 +16,28 @@ jobs:
 
       - name: build html file
         run: |
-          dhall text <generate.dhall >openmls-validation-dashboard.html
+          mkdir _site
+          dhall text <generate.dhall >_site/openmls-validation-dashboard.html
+          chmod 644 _site/openmls-validation-dashboard.html
+          chmod 755 _site
 
-      - name: upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: openmls-validation-dashboard.html
-          path: openmls-validation-dashboard.html
+      - name: upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
