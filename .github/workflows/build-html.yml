@@ -17,8 +17,8 @@ jobs:
       - name: build html file
         run: |
           mkdir _site
-          dhall text <generate.dhall >_site/openmls-validation-dashboard.html
-          chmod 644 _site/openmls-validation-dashboard.html
+          dhall text <generate.dhall >_site/index.html
+          chmod 644 _site/index.html
           chmod 755 _site
 
       - name: upload pages artifact
