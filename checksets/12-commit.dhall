@@ -9,7 +9,7 @@ let descText =
       <p>A member of the group applies a Commit message by taking the following steps:</p>
       ''
 
-let desc = types.RfcRef/single descText "section-7.3"
+let desc = types.RfcRef/single descText "section-12.4.2"
 
 let checks =
         [ types.Check/new
