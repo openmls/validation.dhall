@@ -94,7 +94,7 @@ let Check/tableRow
                 { name = "td"
                 , attributes = XML.emptyAttributes
                 , content =
-                    Prelude.List.map Text XML.Type XML.text check.notes.notes
+                    [XML/asUl "notes" (Prelude.List.map Text XML.Type XML.text check.notes.notes)]
                 }
 
         in  XML.element

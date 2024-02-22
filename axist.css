@@ -93,14 +93,14 @@ SOFTWARE.
 }
 
 html {
-  font-size: calc(12px + ((100vw - 600px) / 250));
+  font-size: calc(14px + ((100vw - 600px) / 500));
   padding: 0;
   text-decoration-skip-ink: "auto";
   line-height: 1.953rem;
   margin: auto;
   min-height: 100%;
   overflow-x: hidden;
-  max-width: 1530px;
+  max-width: 90rem;
 }
 
 body {
