@@ -63,10 +63,14 @@ let checks =
                 ''
                 "section-7.3-4.4"
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+            )
         , types.Check/new
             5
             ( types.RfcRef/new
