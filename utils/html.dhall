@@ -2,7 +2,7 @@ let Prelude =
       https://prelude.dhall-lang.org/v22.0.0/package.dhall
         sha256:1c7622fdc868fe3a23462df3e6f533e50fdc12ecf3b42c0bb45c328ec8c4293e
 
-let Types = ./types.dhall
+let Types = ../types.dhall
 
 let XML = Prelude.XML
 
@@ -193,7 +193,7 @@ let outerTemplate
                   , XML.element
                       { name = "style"
                       , attributes = [ XML.attribute "type" "text/css" ]
-                      , content = [ XML.rawText ./axist.css as Text ]
+                      , content = [ XML.rawText ../assets/axist.css as Text ]
                       }
                   ]
                 }

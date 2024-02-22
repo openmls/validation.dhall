@@ -17,7 +17,7 @@ jobs:
       - name: build html file
         run: |
           mkdir _site
-          dhall text <generate.dhall >_site/index.html
+          dhall text --file views/dashboard.dhall >_site/index.html
           chmod 644 _site/index.html
           chmod 755 _site
 
