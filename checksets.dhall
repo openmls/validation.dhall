@@ -9,4 +9,5 @@
 , ./checksets/09-reinit_proposal.dhall
 , ./checksets/10-groupcontextextensions_proposal.dhall
 , ./checksets/11-update-path.dhall
+, ./checksets/12-commit.dhall
 ]
