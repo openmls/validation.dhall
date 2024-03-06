@@ -18,6 +18,7 @@ jobs:
         run: |
           mkdir _site
           dhall text --file views/dashboard.dhall >_site/index.html
+          dhall text --file views/bookmarkletPage.dhall >_site/bookmarklet.html
           chmod 644 _site/index.html
           chmod 755 _site
 

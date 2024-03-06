@@ -13,6 +13,18 @@ let XML = Prelude.XML
 let checkSetHtmls =
       Prelude.List.map Types.CheckSet XML.Type Html.CheckSet/table CheckSets
 
-let page = Html.outerTemplate "OpenMLS validation status" checkSetHtmls
+let footer = XML.element {
+    name = "footer",
+    attributes = XML.emptyAttributes,
+    content = [
+      XML.element {
+          name = "a",
+          attributes = [ XML.attribute "href" "bookmarklet.html" ],
+          content = "highlighting bookmarklet page"
+        }
+    ]
+  }
+
+let page = Html.outerTemplate "OpenMLS validation status" checkSetHtmls # [footer]
 
 in  "<!DOCTYPE html>" ++ XML.render page
