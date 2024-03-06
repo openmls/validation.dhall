@@ -20,11 +20,11 @@ let footer = XML.element {
       XML.element {
           name = "a",
           attributes = [ XML.attribute "href" "bookmarklet.html" ],
-          content = "highlighting bookmarklet page"
+          content = [ XML.rawText "highlighting bookmarklet page" ]
         }
     ]
   }
 
-let page = Html.outerTemplate "OpenMLS validation status" checkSetHtmls # [footer]
+let page = Html.outerTemplate "OpenMLS validation status" (checkSetHtmls # [footer])
 
 in  "<!DOCTYPE html>" ++ XML.render page
