@@ -36,7 +36,19 @@ let checks =
             types.Status.Unknown
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/new
+                [
+                    ''
+                    (2) LeafNodeIn::into_verifiable_leaf_node
+                    ''
+                ,   ''
+                    (1) KeyPackageIn::validate
+                    ''
+                ,   ''
+                    (3) RatchetTree::try_from_nodes
+                    ''
+                ]
+            )
         , types.Check/new
             3
             ( types.RfcRef/single
