@@ -35,8 +35,7 @@ let checks =
             )
             types.Status.Unknown
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/new
+            ( types.CodeRefs/new
                 [
                     ''
                     (2) LeafNodeIn::into_verifiable_leaf_node
@@ -49,6 +48,7 @@ let checks =
                     ''
                 ]
             )
+            types.Notes/empty
         , types.Check/new
             3
             ( types.RfcRef/single
