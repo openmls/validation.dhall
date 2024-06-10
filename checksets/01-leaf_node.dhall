@@ -34,20 +34,13 @@ let checks =
                 "section-7.3-4.2"
             )
             types.Status.Unknown
-            types.CodeRefs/empty
             ( types.CodeRefs/new
-                [
-                    ''
-                    (2) LeafNodeIn::into_verifiable_leaf_node
-                    ''
-                ,   ''
-                    (1) KeyPackageIn::validate
-                    ''
-                ,   ''
-                    (3) RatchetTree::try_from_nodes
-                    ''
+                [ "openmls::key_package::key_package_in::KeyPackageIn::validate"
+                , "openmls::treesync::leaf_node::LeafNodeIn::into_verifiable_leaf_node"
+                , "openmls::treesync::RatchetTree::try_from_nodes"
                 ]
             )
+            types.CodeRefs/empty
             types.Notes/empty
         , types.Check/new
             3
