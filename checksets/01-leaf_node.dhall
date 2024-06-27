@@ -43,13 +43,17 @@ let checks =
                 "Verify that the LeafNode is compatible with the group's parameters. If the GroupContext has a required_capabilities extension, then the required extensions, proposals, and credential types MUST be listed in the LeafNode's capabilities field."
                 "section-7.3-4.3"
             )
-            types.Status.Missing
+            types.Status.Partial
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                ''
-                reported in https://github.com/xmtp/openmls/pull/19
-                ''
+            ( types.CodeRefs/new
+                [ types.CodeRef/new
+                    "openmls::group::mls_group::group_context_extensions::fail_insufficient_capabilities_add_valno103"
+                ]
+            )
+            ( types.Notes/new
+                [ "reported in https://github.com/xmtp/openmls/pull/19"
+                , "there is a second test, but it's failing does to issues with the testing tools: openmls::group::mls_group::group_context_extensions::fail_insufficient_capabilities_update_valno103"
+                ]
             )
         , types.Check/new
             4
