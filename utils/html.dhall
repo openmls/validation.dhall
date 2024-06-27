@@ -130,7 +130,7 @@ let Check/tableRow
 
         let testsUl =
               if    Prelude.List.null Types.CodeRef check.test.refs
-              then  [ XML.text "no refs to test.", br ]
+              then  [ XML.text "no refs to tests.", br ]
               else  [ XML.text "test refs:", CodeRefs/asUl "test" check.test ]
 
         let notesCell =
@@ -175,7 +175,7 @@ let thead =
             , XML.element
                 { name = "th"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text "notes" ]
+                , content = [ XML.text "notes & code refs" ]
                 }
             ]
         )
