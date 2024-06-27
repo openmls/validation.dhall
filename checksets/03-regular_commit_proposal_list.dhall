@@ -131,9 +131,17 @@ let checks =
               "It contains multiple GroupContextExtension proposals."
               "section-12.2-3.8"
           )
-          types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          ( types.CodeRefs/new
+              [ types.CodeRef/new
+                  "openmls::group::public_group::validate_group_context_extensions_proposal"
+              ]
+          )
+          ( types.CodeRefs/new
+              [ types.CodeRef/new
+                  "openmls::group::mls_group::test_mls_group::group_context_extension_proposal"
+              ]
+          )
           types.Notes/empty
       , types.Check/new
           9

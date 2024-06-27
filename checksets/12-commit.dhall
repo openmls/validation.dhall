@@ -29,9 +29,7 @@ let checks =
                 Unprotect the Commit using the keys from the current epoch: If the message is
                 encoded as PublicMessage, verify the membership MAC using the membership_key.
                 ''
-                [ "section-12.4.2-2.2.1"
-                , "section-12.4.2-2.2.2.1"
-                ]
+                [ "section-12.4.2-2.2.1", "section-12.4.2-2.2.2.1" ]
             )
             types.Status.Unknown
             types.CodeRefs/empty
@@ -128,13 +126,12 @@ let checks =
             types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
-          ( types.Notes/single
-              ''
-              reported in https://github.com/xmtp/openmls/pull/19
-              ''
-          )
+            ( types.Notes/single
+                ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+            )
         ]
       : List types.Check
 
 in  types.CheckSet/new id name desc checks
-

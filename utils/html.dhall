@@ -58,9 +58,29 @@ let RfcRef/links
               (Types.RfcRef/urls ref)
           )
 
+let CodeRefs/asUl
+    : Text -> Types.CodeRefs -> XML.Type
+    = \(name : Text) ->
+      \(ref : Types.CodeRefs) ->
+        XML/asUl
+          name
+          ( Prelude.List.map
+              Types.CodeRef
+              XML.Type
+              (\(codeRef : Types.CodeRef) -> XML.text codeRef.modPath)
+              ref.refs
+          )
+
 let Check/tableRow
     : Types.Check -> XML.Type
     = \(check : Types.Check) ->
+        let br =
+              XML.element
+                { name = "br"
+                , attributes = XML.emptyAttributes
+                , content = [] : List XML.Type
+                }
+
         let idCell =
               XML.element
                 { name = "td"
@@ -89,12 +109,35 @@ let Check/tableRow
                 , content = [ XML.text (Types.Status/show check.status) ]
                 }
 
+        let notesUl =
+              if    Prelude.List.null Text check.notes.notes
+              then  [ XML.text "no notes.", br ]
+              else  [ XML.text "notes:"
+                    , XML/asUl
+                        "notes"
+                        ( Prelude.List.map
+                            Text
+                            XML.Type
+                            XML.text
+                            check.notes.notes
+                        )
+                    ]
+
+        let implsUl =
+              if    Prelude.List.null Types.CodeRef check.code.refs
+              then  [ XML.text "no refs to code." , br]
+              else  [ XML.text "code refs:", CodeRefs/asUl "impls" check.code ]
+
+        let testsUl =
+              if    Prelude.List.null Types.CodeRef check.test.refs
+              then  [ XML.text "no refs to tests.", br ]
+              else  [ XML.text "test refs:", CodeRefs/asUl "test" check.test ]
+
         let notesCell =
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content =
-                    [XML/asUl "notes" (Prelude.List.map Text XML.Type XML.text check.notes.notes)]
+                , content = notesUl # implsUl  # testsUl
                 }
 
         in  XML.element
@@ -132,7 +175,7 @@ let thead =
             , XML.element
                 { name = "th"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text "notes" ]
+                , content = [ XML.text "notes & code refs" ]
                 }
             ]
         )

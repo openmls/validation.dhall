@@ -26,7 +26,7 @@ let checks =
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/single
-               "reported in https://github.com/xmtp/openmls/pull/19"
+              "reported in https://github.com/xmtp/openmls/pull/19"
           )
       ]
 
