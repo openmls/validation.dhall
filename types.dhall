@@ -43,11 +43,11 @@ let Url/new
 
 let CodeRef
     : Type
-    = { modPath : Text }
+    = { modPath : Text, url : Url }
 
 let CodeRef/new
-    : Text -> CodeRef
-    = \(modPath : Text) -> { modPath }
+    : Text -> Url -> CodeRef
+    = \(modPath : Text) -> \(url : Url) -> { modPath, url }
 
 let CodeRefs
     : Type
