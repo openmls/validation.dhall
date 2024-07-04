@@ -61,6 +61,13 @@ let CodeRefs/empty
     : CodeRefs
     = CodeRefs/new ([] : List CodeRef)
 
+let CodeRefs/single
+    : Text -> CodeRefs
+    -- : Text -> Url -> CodeRefs
+    = \(modPath : Text) ->
+      --\(url : Url) ->
+        CodeRefs/new [ CodeRef/new modPath ] -- url ]
+
 let RfcRef
     : Type
     = { text : Text, rfcFragments : List Text }
@@ -160,6 +167,7 @@ in  { CodeRef
     , CodeRefs
     , CodeRefs/new
     , CodeRefs/empty
+    , CodeRefs/single
     , Notes
     , Notes/new
     , Notes/single
