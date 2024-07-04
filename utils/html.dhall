@@ -2,14 +2,14 @@ let Prelude =
       https://prelude.dhall-lang.org/v22.0.0/package.dhall
         sha256:1c7622fdc868fe3a23462df3e6f533e50fdc12ecf3b42c0bb45c328ec8c4293e
 
-let types = ../types.dhall
+let Types = ../types.dhall
 
 let XML = Prelude.XML
 
 let Url/link
-    : Text -> types.Url -> XML.Type
+    : Text -> Types.Url -> XML.Type
     = \(linkText : Text) ->
-      \(url : types.Url) ->
+      \(url : Types.Url) ->
         XML.element
           { name = "a"
           , attributes = [ XML.attribute "href" url.url ]
@@ -47,27 +47,27 @@ let XML/asUl
           }
 
 let RfcRef/links
-    : types.RfcRef -> XML.Type
-    = \(ref : types.RfcRef) ->
+    : Types.RfcRef -> XML.Type
+    = \(ref : Types.RfcRef) ->
         XML/asUl
           "rfcref-links"
           ( Prelude.List.map
-              types.Url
+              Types.Url
               XML.Type
               (Url/link "link")
-              (types.RfcRef/urls ref)
+              (Types.RfcRef/urls ref)
           )
 
 let CodeRefs/asUl
-    : Text -> types.CodeRefs -> XML.Type
+    : Text -> Types.CodeRefs -> XML.Type
     = \(name : Text) ->
-      \(ref : types.CodeRefs) ->
+      \(ref : Types.CodeRefs) ->
         XML/asUl
           name
           ( Prelude.List.map
-              types.CodeRef
+              Types.CodeRef
               XML.Type
-              ( \(codeRef : types.CodeRef) ->
+              ( \(codeRef : Types.CodeRef) ->
                   XML.element
                     { name = "a"
                     , attributes = [ XML.attribute "href" codeRef.url.url ]
@@ -78,8 +78,8 @@ let CodeRefs/asUl
           )
 
 let Check/tableRow
-    : types.Check -> XML.Type
-    = \(check : types.Check) ->
+    : Types.Check -> XML.Type
+    = \(check : Types.Check) ->
         let br =
               XML.element
                 { name = "br"
@@ -112,7 +112,7 @@ let Check/tableRow
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text (types.Status/show check.status) ]
+                , content = [ XML.text (Types.Status/show check.status) ]
                 }
 
         let notesUl =
@@ -130,12 +130,12 @@ let Check/tableRow
                     ]
 
         let implsUl =
-              if    Prelude.List.null types.CodeRef check.code.refs
+              if    Prelude.List.null Types.CodeRef check.code.refs
               then  [ XML.text "no refs to code.", br ]
               else  [ XML.text "code refs:", CodeRefs/asUl "impls" check.code ]
 
         let testsUl =
-              if    Prelude.List.null types.CodeRef check.test.refs
+              if    Prelude.List.null Types.CodeRef check.test.refs
               then  [ XML.text "no refs to tests.", br ]
               else  [ XML.text "test refs:", CodeRefs/asUl "test" check.test ]
 
@@ -187,8 +187,8 @@ let thead =
         )
 
 let CheckSet/table
-    : types.CheckSet -> XML.Type
-    = \(checkSet : types.CheckSet) ->
+    : Types.CheckSet -> XML.Type
+    = \(checkSet : Types.CheckSet) ->
         XML.element
           { name = "div"
           , attributes = XML.emptyAttributes
@@ -212,7 +212,7 @@ let CheckSet/table
                   , XML/wrapList
                       "tbody"
                       ( Prelude.List.map
-                          types.Check
+                          Types.Check
                           XML.Type
                           Check/tableRow
                           checkSet.checks
