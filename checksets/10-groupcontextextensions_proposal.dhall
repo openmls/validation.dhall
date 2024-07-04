@@ -28,26 +28,6 @@ let checks =
           types.CodeRefs/empty
           types.CodeRefs/empty
           types.Notes/empty
-      , types.Check/new
-          2
-          ( types.RfcRef/single
-              ''
-              For new members, support for required capabilities is enforced by existing members during
-              the application of Add commits. Existing members should of course be in compliance already.
-              In order to ensure this continues to be the case even as the group's extensions are updated,
-              a GroupContextExtensions proposal is deemed invalid if it contains a required_capabilities
-              extension that requires non-default capabilities not supported by all current members.
-              ''
-              "section-11.1.4"
-          )
-          types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/new
-              [ "don't ask me why this isn't in section 12.1.7..."
-              , "reported in https://github.com/xmtp/openmls/pull/19"
-              ]
-          )
       ]
 
 in  types.CheckSet/new id name desc checks
