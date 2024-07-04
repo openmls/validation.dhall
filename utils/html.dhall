@@ -67,7 +67,13 @@ let CodeRefs/asUl
           ( Prelude.List.map
               Types.CodeRef
               XML.Type
-              (\(codeRef : Types.CodeRef) -> XML.text codeRef.modPath)
+              ( \(codeRef : Types.CodeRef) ->
+                  XML.element
+                    { name = "a"
+                    , attributes = [ XML.attribute "href" codeRef.url.url ]
+                    , content = [ XML.text codeRef.modPath ]
+                    }
+              )
               ref.refs
           )
 
@@ -125,7 +131,7 @@ let Check/tableRow
 
         let implsUl =
               if    Prelude.List.null Types.CodeRef check.code.refs
-              then  [ XML.text "no refs to code." , br]
+              then  [ XML.text "no refs to code.", br ]
               else  [ XML.text "code refs:", CodeRefs/asUl "impls" check.code ]
 
         let testsUl =
@@ -137,7 +143,7 @@ let Check/tableRow
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = notesUl # implsUl  # testsUl
+                , content = notesUl # implsUl # testsUl
                 }
 
         in  XML.element
