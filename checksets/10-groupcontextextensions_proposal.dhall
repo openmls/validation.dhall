@@ -24,30 +24,16 @@ let checks =
               ''
               "section-12.1.7-3"
           )
-          types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          types.Notes/empty
-      , types.Check/new
-          2
-          ( types.RfcRef/single
-              ''
-              For new members, support for required capabilities is enforced by existing members during
-              the application of Add commits. Existing members should of course be in compliance already.
-              In order to ensure this continues to be the case even as the group's extensions are updated,
-              a GroupContextExtensions proposal is deemed invalid if it contains a required_capabilities
-              extension that requires non-default capabilities not supported by all current members.
-              ''
-              "section-11.1.4"
+          types.Status.Partial
+          ( types.CodeRefs/single
+              "openmls::group::public_group::PublicGroup::validate_group_context_extensions_proposal"
+              "https://github.com/openmls/openmls/blob/58df3c7639e5ca3c2e52a35a97c0dbeffd7d77bf/openmls/src/group/public_group/validation.rs#L565-L567"
           )
-          types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/new
-              [ "don't ask me why this isn't in section 12.1.7..."
-              , "reported in https://github.com/xmtp/openmls/pull/19"
-              ]
+          ( types.CodeRefs/single
+              "openmls::group::tests_and_kats::tests::group_context_extensions::fail_unsupported_gces_add_valno1001"
+              "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L919-L1051"
           )
+          types.Notes/single "currently, we only test for missing supported extension types, not proposal or proposal types."
       ]
 
 in  types.CheckSet/new id name desc checks

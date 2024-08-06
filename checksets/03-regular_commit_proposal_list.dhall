@@ -132,21 +132,13 @@ let checks =
               "section-12.2-3.8"
           )
           types.Status.Complete
-          ( types.CodeRefs/new
-              [ types.CodeRef/new
-                  "openmls::group::public_group::validate_group_context_extensions_proposal"
-                  ( types.Url/new
-                      "https://github.com/openmls/openmls/blob/58df3c7639e5ca3c2e52a35a97c0dbeffd7d77bf/openmls/src/group/public_group/validation.rs#L537-L598"
-                  )
-              ]
+          ( types.CodeRefs/single
+              "openmls::group::public_group::validate_group_context_extensions_proposal"
+              "https://github.com/openmls/openmls/blob/58df3c7639e5ca3c2e52a35a97c0dbeffd7d77bf/openmls/src/group/public_group/validation.rs#L537-L598"
           )
-          ( types.CodeRefs/new
-              [ types.CodeRef/new
-                  "openmls::group::mls_group::test_mls_group::group_context_extension_proposal"
-                  ( types.Url/new
-                      "https://github.com/openmls/openmls/blob/58df3c7639e5ca3c2e52a35a97c0dbeffd7d77bf/openmls/src/group/mls_group/test_mls_group.rs#L1146-L1354"
-                  )
-              ]
+          ( types.CodeRefs/single
+              "openmls::group::tests_and_kats::tests::group_context_extensions::fail_3gce_proposals_1_commit_valno308"
+              "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L823-L917"
           )
           types.Notes/empty
       , types.Check/new
