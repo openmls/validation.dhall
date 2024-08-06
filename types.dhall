@@ -35,11 +35,11 @@ let Notes/empty
 
 let Url
     : Type
-    = { url : Text }
+    = Text
 
 let Url/new
     : Text -> Url
-    = \(url : Text) -> { url }
+    = \(url : Text) -> url
 
 let CodeRef
     : Type
@@ -62,11 +62,10 @@ let CodeRefs/empty
     = CodeRefs/new ([] : List CodeRef)
 
 let CodeRefs/single
-    : Text -> CodeRefs
-    -- : Text -> Url -> CodeRefs
+    : Text -> Url -> CodeRefs
     = \(modPath : Text) ->
-      --\(url : Url) ->
-        CodeRefs/new [ CodeRef/new modPath ] -- url ]
+      \(url : Url) ->
+        CodeRefs/new [ CodeRef/new modPath url ]
 
 let RfcRef
     : Type
@@ -89,8 +88,7 @@ let RfcRef/urls
           Text
           Url
           ( \(fragment : Text) ->
-              { url = "https://www.rfc-editor.org/rfc/rfc9420.html#${fragment}"
-              }
+              "https://www.rfc-editor.org/rfc/rfc9420.html#${fragment}"
           )
           ref.rfcFragments
 

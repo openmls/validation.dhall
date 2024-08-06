@@ -12,7 +12,7 @@ let Url/link
       \(url : Types.Url) ->
         XML.element
           { name = "a"
-          , attributes = [ XML.attribute "href" url.url ]
+          , attributes = [ XML.attribute "href" url ]
           , content = [ XML.text linkText ]
           }
 
@@ -70,7 +70,7 @@ let CodeRefs/asUl
               ( \(codeRef : Types.CodeRef) ->
                   XML.element
                     { name = "a"
-                    , attributes = [ XML.attribute "href" codeRef.url.url ]
+                    , attributes = [ XML.attribute "href" codeRef.url ]
                     , content = [ XML.text codeRef.modPath ]
                     }
               )

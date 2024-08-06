@@ -25,9 +25,12 @@ let checks =
               ''
               "section-10.1-4.1"
           )
-          types.Status.Unknown
+          types.Status.Complete
           types.CodeRefs/empty
-          types.CodeRefs/empty
+          ( types.CodeRefs/single
+              "openmls::group::tests_and_kats::tests::group_context_extensions::fail_key_package_version_valno201"
+              "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L716-821"
+          )
           types.Notes/empty
       , types.Check/new
           2

@@ -47,12 +47,16 @@ let checks =
             types.CodeRefs/empty
             ( types.CodeRefs/new
                 [ types.CodeRef/new
-                    "openmls::group::mls_group::group_context_extensions::fail_insufficient_capabilities_add_valno103"
+                    "openmls::group::tests_and_kats::tests::group_context_extensions::fail_insufficient_capabilities_add_valno103"
+                    "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L430-L539"
+                , types.CodeRef/new
+                    "openmls::group::tests_and_kats::tests::group_context_extensions::fail_insufficient_capabilities_update_valno103"
+                    "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L541-L714"
                 ]
             )
             ( types.Notes/new
                 [ "reported in https://github.com/xmtp/openmls/pull/19"
-                , "there is a second test, but it's failing does to issues with the testing tools: openmls::group::mls_group::group_context_extensions::fail_insufficient_capabilities_update_valno103"
+                , "We currently test this when an Add and Update proposal is being committed."
                 ]
             )
         , types.Check/new
