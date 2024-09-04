@@ -33,7 +33,9 @@ let checks =
               "openmls::group::tests_and_kats::tests::group_context_extensions::fail_unsupported_gces_add_valno1001"
               "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L919-L1051"
           )
-          types.Notes/single "currently, we only test for missing supported extension types, not proposal or proposal types."
+          ( types.Notes/single
+              "currently, we only test for missing supported extension types, not proposal or proposal types."
+          )
       ]
 
 in  types.CheckSet/new id name desc checks

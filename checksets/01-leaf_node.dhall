@@ -26,17 +26,22 @@ let checks =
             types.Status.Unknown
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                "maybe this should be an application-level check?"
+            )
         , types.Check/new
             2
             ( types.RfcRef/single
                 "Verify that the signature on the LeafNode is valid using signature_key."
                 "section-7.3-4.2"
             )
-            types.Status.Unknown
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::key_packages::KeyPackageIn::validate"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L150"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: add test ref")
         , types.Check/new
             3
             ( types.RfcRef/single
@@ -71,14 +76,13 @@ let checks =
                 ''
                 "section-7.3-4.4"
             )
-            types.Status.Missing
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                ''
-                reported in https://github.com/xmtp/openmls/pull/19
-                ''
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::validation::validate_capabilities"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L303-L383"
             )
+            types.CodeRefs/empty
+            (types.Notes/single "todo: add test refs")
         , types.Check/new
             5
             ( types.RfcRef/new
@@ -90,7 +94,7 @@ let checks =
                 ''
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.1" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty
@@ -108,7 +112,7 @@ let checks =
                 ''
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.2" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty
@@ -122,10 +126,13 @@ let checks =
                 ''
                 "section-7.3-4.6"
             )
-            types.Status.Unknown
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::validation::validate_capabilities"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L303-L383"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: add test ref")
         , types.Check/new
             8
             ( types.RfcRef/new
@@ -135,7 +142,7 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.1" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty
@@ -150,7 +157,7 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.2" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty
@@ -164,7 +171,7 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.3" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty
@@ -177,14 +184,13 @@ let checks =
                 ''
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.1" ]
             )
-            types.Status.Missing
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                ''
-                reported in https://github.com/xmtp/openmls/pull/19
-                ''
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::validation::validate_key_uniqueness"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L169-L298"
             )
+            types.CodeRefs/empty
+            (types.Notes/single "todo: add test ref")
         , types.Check/new
             12
             ( types.RfcRef/new
@@ -194,14 +200,13 @@ let checks =
                 ''
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.2" ]
             )
-            types.Status.Missing
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                ''
-                reported in https://github.com/xmtp/openmls/pull/19
-                ''
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::validation::validate_key_uniqueness"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L169-L298"
             )
+            types.CodeRefs/empty
+            (types.Notes/single "todo: add test ref")
         ]
       : List types.Check
 
