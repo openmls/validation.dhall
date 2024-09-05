@@ -158,14 +158,13 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.4" ]
             )
-            types.Status.Missing
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                ''
-                reported in https://github.com/xmtp/openmls/pull/19
-                ''
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::PublicGroup::validate_key_uniqueness"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L169-L298"
             )
+            types.CodeRefs/empty
+            (types.Notes/single "todo: add test refs")
         ]
       : List types.Check
 
