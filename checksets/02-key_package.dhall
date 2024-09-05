@@ -44,7 +44,9 @@ let checks =
           types.Status.Unknown
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              "currently this is only done when processing adds in commit messages"
+          )
       , types.Check/new
           3
           ( types.RfcRef/single
@@ -54,10 +56,18 @@ let checks =
               ''
               "section-10.1-4.3"
           )
-          types.Status.Unknown
+          types.Status.Partial
+          ( types.CodeRefs/single
+              "openmls::key_packages::KeyPackageIn::validate"
+              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L150"
+          )
           types.CodeRefs/empty
-          types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              this looks like a bug in the RFC. It should be signed using leaf_node.signature_key,
+              but the credential can have opinions on whether that key is valid.
+              ''
+          )
       , types.Check/new
           4
           ( types.RfcRef/single
@@ -67,10 +77,13 @@ let checks =
               ''
               "section-10.1-4.4"
           )
-          types.Status.Unknown
+          types.Status.Partial
+          ( types.CodeRefs/single
+              "openmls::key_packages::KeyPackageIn::validate"
+              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L160-L163"
+          )
           types.CodeRefs/empty
-          types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "todo: add test ref")
       ]
 
 in  types.CheckSet/new id name desc checks
