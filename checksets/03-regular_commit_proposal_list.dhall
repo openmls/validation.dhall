@@ -62,8 +62,11 @@ let checks =
               "It contains a Remove proposal that removes the committer."
               "section-12.2-3.3"
           )
-          types.Status.Missing
-          types.CodeRefs/empty
+          types.Status.Partial
+          ( types.CodeRefs/single
+              "openmls::group::mls_group::MlsGroup::from_committed_proposals"
+              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/mls_group/proposal_store.rs#L239-L270"
+          )
           types.CodeRefs/empty
           types.Notes/empty
       , types.Check/new

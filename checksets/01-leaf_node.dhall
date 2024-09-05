@@ -95,9 +95,18 @@ let checks =
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.1" ]
             )
             types.Status.Missing
+            ( types.CodeRefs/single
+                "openmls::key_packages::KeyPackageIn::validate"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L193-L194"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/new
+                [ ''
+                  probably only done for key packages, but these should be the only
+                  leaf nodes with lifetimes anyway''
+                , "todo: add test refs"
+                ]
+            )
         , types.Check/new
             6
             ( types.RfcRef/new
@@ -142,10 +151,13 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.1" ]
             )
-            types.Status.Missing
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::key_packages::KeyPackageIn::validate"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L148-L154"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: add test refs")
         , types.Check/new
             9
             ( types.RfcRef/new
@@ -157,10 +169,17 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.2" ]
             )
-            types.Status.Missing
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::PublicGroup::validate_key_uniqueness"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L280-L282"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/new
+                [ "we might be more restrictive here, because we don't accept colliding keys at all, not just in Update proposals"
+                , "todo: add test refs"
+                ]
+            )
         , types.Check/new
             10
             ( types.RfcRef/new

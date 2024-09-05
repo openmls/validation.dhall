@@ -15,13 +15,19 @@ let checks =
         [ types.Check/new
             1
             ( types.RfcRef/single
-                "Verify that the credential in the LeafNode is valid, as described in Section 5.3.1."
+                ''
+                Verify that the epoch field of the enclosing FramedContent is equal to the
+                epoch field of the current GroupContext object.
+                ''
                 "section-12.4.2-2.1"
             )
-            types.Status.Unknown
+            types.Status.Partial
+            ( types.CodeRefs/single
+                "openmls::group::public_group::PublicGroup::validate_commit"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L49-L57"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: find test refs")
         , types.Check/new
             2
             ( types.RfcRef/new
@@ -32,9 +38,17 @@ let checks =
                 [ "section-12.4.2-2.2.1", "section-12.4.2-2.2.2.1" ]
             )
             types.Status.Unknown
+            ( types.CodeRefs/new
+                [ types.CodeRef/new
+                    "openmls::group::mls_group::MlsGroup::process_message"
+                    "https://github.com/openmls/openmls/blob/main/openmls/src/group/mls_group/processing.rs#L62-L63"
+                , types.CodeRef/new
+                    "openmls::group::public_group::PublicGroup::process_message"
+                    "https://github.com/openmls/openmls/blob/main/openmls/src/group/public_group/process.rs#L149-L157"
+                ]
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: add test refs")
         , types.Check/new
             3
             ( types.RfcRef/single
@@ -44,9 +58,17 @@ let checks =
                 "section-12.4.2-2.3"
             )
             types.Status.Unknown
+            ( types.CodeRefs/new
+                [ types.CodeRef/new
+                    "openmls::group::mls_group::MlsGroup::process_unverified_message"
+                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/mls_group/processing.rs#L273-L274"
+                , types.CodeRef/new
+                    "openmls::group::public_group::PublicGroup::process_unverified_message"
+                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/process.rs#L203-L204"
+                ]
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: find test refs")
         , types.Check/new
             4
             ( types.RfcRef/single
@@ -55,10 +77,18 @@ let checks =
                 ''
                 "section-12.4.2-2.4"
             )
-            types.Status.Unknown
+            types.Status.Partial
+            ( types.CodeRefs/new
+                [ types.CodeRef/new
+                    "openmls::group::mls_group::MlsGroup::stage_commit"
+                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/mls_group/staged_commit.rs#L152-L154"
+                , types.CodeRef/new
+                    "openmls::group::public_group::PublicGroup::stage_commit"
+                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L208"
+                ]
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: find test refs")
         , types.Check/new
             5
             ( types.RfcRef/single
@@ -70,7 +100,9 @@ let checks =
             types.Status.Unknown
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                "of course you need all the proposals and all the psks before being able to apply the commit... This is implicit in the code"
+            )
         , types.Check/new
             6
             ( types.RfcRef/single
@@ -82,9 +114,12 @@ let checks =
                 "section-12.4.2-2.7"
             )
             types.Status.Unknown
+            ( types.CodeRefs/single
+                "openmls::group::public_group::PublicGroup::stage_diff"
+                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L243-L246"
+            )
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "todo: find test refs")
         , types.Check/new
             7
             ( types.RfcRef/new
