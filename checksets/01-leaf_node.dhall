@@ -94,7 +94,7 @@ let checks =
                 ''
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.1" ]
             )
-            types.Status.Missing
+            types.Status.Partial
             ( types.CodeRefs/single
                 "openmls::key_packages::KeyPackageIn::validate"
                 "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L193-L194"

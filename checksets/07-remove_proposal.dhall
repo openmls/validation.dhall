@@ -22,7 +22,7 @@ let checks =
               ''
               "section-12.1.3-3"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
           types.Notes/empty

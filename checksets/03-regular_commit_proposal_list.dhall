@@ -150,7 +150,7 @@ let checks =
               ''
               "section-12.2-3.7"
           )
-          types.Status.Unknown
+          types.Status.Partial
           ( types.CodeRefs/single
               "openmls::group::public_group::PublicGroup::validate_pre_shared_key_proposals"
               "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L467-L492"
@@ -235,7 +235,7 @@ let checks =
               ''
               "section-12.2-3.12"
           )
-          types.Status.Unknown
+          types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
           types.Notes/empty

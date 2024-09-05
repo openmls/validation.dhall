@@ -37,7 +37,7 @@ let checks =
                 ''
                 [ "section-12.4.2-2.2.1", "section-12.4.2-2.2.2.1" ]
             )
-            types.Status.Unknown
+            types.Status.Partial
             ( types.CodeRefs/new
                 [ types.CodeRef/new
                     "openmls::group::mls_group::MlsGroup::process_message"
@@ -57,7 +57,7 @@ let checks =
                 ''
                 "section-12.4.2-2.3"
             )
-            types.Status.Unknown
+            types.Status.Partial
             ( types.CodeRefs/new
                 [ types.CodeRef/new
                     "openmls::group::mls_group::MlsGroup::process_unverified_message"
@@ -113,7 +113,7 @@ let checks =
                 ''
                 "section-12.4.2-2.7"
             )
-            types.Status.Unknown
+            types.Status.Partial
             ( types.CodeRefs/single
                 "openmls::group::public_group::PublicGroup::stage_diff"
                 "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L243-L246"
@@ -130,7 +130,7 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.2" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty
@@ -144,7 +144,7 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.3" ]
             )
-            types.Status.Unknown
+            types.Status.Missing
             types.CodeRefs/empty
             types.CodeRefs/empty
             types.Notes/empty

@@ -29,7 +29,7 @@ let checks =
           types.Status.Unknown
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "this feature is not implemented")
       ]
 
 in  types.CheckSet/new id name desc checks
