@@ -1,27 +1,33 @@
 let Prelude =
       https://prelude.dhall-lang.org/v22.0.0/package.dhall
         sha256:1c7622fdc868fe3a23462df3e6f533e50fdc12ecf3b42c0bb45c328ec8c4293e
-let XML = Prelude.XML
 
 let Types = ../types.dhall
 
 let Css = ../utils/css.dhall
+
 let Html = ../utils/html.dhall
 
 let checksets = ../checksets.dhall
+
+let XML = Prelude.XML
 
 let Check/fragments = \(check : Types.Check) -> check.desc.rfcFragments
 
 let CheckSet/fragments =
       \(checkSet : Types.CheckSet) ->
         Prelude.List.foldLeft
-            Types.Check
-            checkSet.checks
-            (List Text)
-            (\(acc : List Text) -> \(cur : Types.Check) -> acc # Check/fragments cur)
-            ([]: List Text)
+          Types.Check
+          checkSet.checks
+          (List Text)
+          ( \(acc : List Text) ->
+            \(cur : Types.Check) ->
+              acc # Check/fragments cur
+          )
+          ([] : List Text)
 
-let fragments = Prelude.List.concatMap Types.CheckSet Text CheckSet/fragments checksets
+let fragments =
+      Prelude.List.concatMap Types.CheckSet Text CheckSet/fragments checksets
 
 let cssSelectors =
       Prelude.List.map
@@ -47,5 +53,6 @@ let linkElem =
 
 let label = XML.rawText "Drag this to your bookmarks bar:"
 
-let page=  Html.outerTemplate "Bookmarklet page" [ label, linkElem ]
+let page = Html.outerTemplate "Bookmarklet page" [ label, linkElem ]
+
 in  "<!DOCTYPE html>" ++ XML.render page

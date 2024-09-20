@@ -6,6 +6,33 @@ let Types = ../types.dhall
 
 let XML = Prelude.XML
 
+let Natural/digits
+    : Natural -> Natural
+    = \(num : Natural) ->
+        if    Prelude.Natural.lessThan 10000 num
+        then  5
+        else  if Prelude.Natural.lessThan 1000 num
+        then  4
+        else  if Prelude.Natural.lessThan 100 num
+        then  3
+        else  if Prelude.Natural.lessThan 10 num
+        then  2
+        else  1
+
+let Natural/padToText
+    : Natural -> Natural -> Text
+    = \(padTo : Natural) ->
+      \(num : Natural) ->
+        let digits = Natural/digits num
+
+        let padCount = Natural/subtract digits padTo
+
+        let zeroes = Prelude.Text.replicate padCount "0"
+
+        let actualNumber = Natural/show num
+
+        in  zeroes ++ actualNumber
+
 let Url/link
     : Text -> Types.Url -> XML.Type
     = \(linkText : Text) ->
@@ -80,6 +107,8 @@ let CodeRefs/asUl
 let Check/tableRow
     : Types.Check -> XML.Type
     = \(check : Types.Check) ->
+        let idString = "valn" ++ Natural/padToText 4 check.id
+
         let br =
               XML.element
                 { name = "br"
@@ -87,11 +116,32 @@ let Check/tableRow
                 , content = [] : List XML.Type
                 }
 
+        let checkLink =
+              XML.element
+                { name = "a"
+                , attributes = [ XML.attribute "href" ("#" ++ idString) ]
+                , content = [ XML.text "¶" ]
+                }
+
+        let linkCell =
+              XML.element
+                { name = "td"
+                , attributes = XML.emptyAttributes
+                , content = [ checkLink ]
+                }
+
         let idCell =
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text (Natural/show check.id) ]
+                , content = [ XML.text idString ]
+                }
+
+        let statusCell =
+              XML.element
+                { name = "td"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text (Types.Status/show check.status) ]
                 }
 
         let descCell =
@@ -106,13 +156,6 @@ let Check/tableRow
                 { name = "td"
                 , attributes = XML.emptyAttributes
                 , content = [ RfcRef/links check.desc ]
-                }
-
-        let statusCell =
-              XML.element
-                { name = "td"
-                , attributes = XML.emptyAttributes
-                , content = [ XML.text (Types.Status/show check.status) ]
                 }
 
         let notesUl =
@@ -139,18 +182,32 @@ let Check/tableRow
               then  [ XML.text "no refs to tests.", br ]
               else  [ XML.text "test refs:", CodeRefs/asUl "test" check.test ]
 
+        let codeSearchA =
+              [ XML.element
+                  { name = "a"
+                  , attributes =
+                    [ XML.attribute
+                        "href"
+                        (     "https://github.com/search?type=code&q=repo%3Aopenmls%2Fopenmls%20"
+                          ++  idString
+                        )
+                    ]
+                  , content = [ XML.text "search code", br ]
+                  }
+              ]
+
         let notesCell =
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = notesUl # implsUl # testsUl
+                , content = codeSearchA # notesUl # implsUl # testsUl
                 }
 
         in  XML.element
               { name = "tr"
-              , attributes = [ XML.attribute "id" (Natural/show check.id) ]
+              , attributes = [ XML.attribute "id" idString ]
               , content =
-                [ idCell, statusCell, descCell, rfcLinksCell, notesCell ]
+                [ linkCell, idCell, statusCell, descCell, rfcLinksCell, notesCell ]
               }
 
 let thead =
@@ -159,6 +216,11 @@ let thead =
         ( XML/wrapList
             "tr"
             [ XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ ]: List XML.Type
+                }
+            ,XML.element
                 { name = "th"
                 , attributes = XML.emptyAttributes
                 , content = [ XML.text "id" ]
