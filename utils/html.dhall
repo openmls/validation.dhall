@@ -123,18 +123,12 @@ let Check/tableRow
                 , content = [ XML.text "¶" ]
                 }
 
-        let linkCell =
-              XML.element
-                { name = "td"
-                , attributes = XML.emptyAttributes
-                , content = [ checkLink ]
-                }
-
         let idCell =
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text idString ]
+                , content =
+                  [ XML.text idString, XML.rawText "&nbsp;", checkLink ]
                 }
 
         let statusCell =
@@ -207,7 +201,7 @@ let Check/tableRow
               { name = "tr"
               , attributes = [ XML.attribute "id" idString ]
               , content =
-                [ linkCell, idCell, statusCell, descCell, rfcLinksCell, notesCell ]
+                [ idCell, statusCell, descCell, rfcLinksCell, notesCell ]
               }
 
 let thead =
@@ -216,11 +210,6 @@ let thead =
         ( XML/wrapList
             "tr"
             [ XML.element
-                { name = "th"
-                , attributes = XML.emptyAttributes
-                , content = [ ]: List XML.Type
-                }
-            ,XML.element
                 { name = "th"
                 , attributes = XML.emptyAttributes
                 , content = [ XML.text "id" ]
@@ -251,44 +240,49 @@ let thead =
 let CheckSet/table
     : Types.CheckSet -> XML.Type
     = \(checkSet : Types.CheckSet) ->
-	let idString = "cs" ++ (Natural/padToText 2 checkSet.id)
-        let checkLink = XML.element
+        let idString = "cs" ++ Natural/padToText 2 checkSet.id
+
+        let checkLink =
+              XML.element
                 { name = "a"
                 , attributes = [ XML.attribute "href" ("#" ++ idString) ]
                 , content = [ XML.text "¶" ]
                 }
-	in XML.element
-          { name = "div"
-          , attributes = [ XML.attribute "id" idString ]
-          , content =
-            [ XML.element
-                { name = "h2"
-                , attributes = XML.emptyAttributes
-                , content = [ XML.text (checkSet.name ++ " "), checkLink ]
-                }
-            , XML.element
-                { name = "div"
-                , attributes = [ XML.attribute "class" "check-set-desc" ]
-                , content =
-                  [ XML.rawText checkSet.desc.text, RfcRef/links checkSet.desc ]
-                }
-            , XML.element
-                { name = "table"
-                , attributes = XML.emptyAttributes
-                , content =
-                  [ thead
-                  , XML/wrapList
-                      "tbody"
-                      ( Prelude.List.map
-                          Types.Check
-                          XML.Type
-                          Check/tableRow
-                          checkSet.checks
-                      )
-                  ]
-                }
-            ]
-          }
+
+        in  XML.element
+              { name = "div"
+              , attributes = [ XML.attribute "id" idString ]
+              , content =
+                [ XML.element
+                    { name = "h2"
+                    , attributes = XML.emptyAttributes
+                    , content = [ XML.text (checkSet.name ++ " "), checkLink ]
+                    }
+                , XML.element
+                    { name = "div"
+                    , attributes = [ XML.attribute "class" "check-set-desc" ]
+                    , content =
+                      [ XML.rawText checkSet.desc.text
+                      , RfcRef/links checkSet.desc
+                      ]
+                    }
+                , XML.element
+                    { name = "table"
+                    , attributes = XML.emptyAttributes
+                    , content =
+                      [ thead
+                      , XML/wrapList
+                          "tbody"
+                          ( Prelude.List.map
+                              Types.Check
+                              XML.Type
+                              Check/tableRow
+                              checkSet.checks
+                          )
+                      ]
+                    }
+                ]
+              }
 
 let outerTemplate
     : Text -> List XML.Type -> XML.Type
