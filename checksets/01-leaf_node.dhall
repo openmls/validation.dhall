@@ -190,10 +190,10 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.3" ]
             )
-            types.Status.Missing
+            types.Status.Partial
+            (types.CodeRefs/single "openmls::treesync::treekem::UpdatePathIn::into_verified" "https://github.com/openmls/openmls/blob/20042d7ed0df813cbe792a2c216092d85845dff4/openmls/src/treesync/treekem.rs#L411-L423")
             types.CodeRefs/empty
-            types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "TODO: find and document where this is tested")
         , types.Check/new
             11
             ( types.RfcRef/new
