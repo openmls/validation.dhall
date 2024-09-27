@@ -251,14 +251,20 @@ let thead =
 let CheckSet/table
     : Types.CheckSet -> XML.Type
     = \(checkSet : Types.CheckSet) ->
-        XML.element
+	let idString = "cs" ++ (Natural/padToText 2 checkSet.id)
+        let checkLink = XML.element
+                { name = "a"
+                , attributes = [ XML.attribute "href" ("#" ++ idString) ]
+                , content = [ XML.text "¶" ]
+                }
+	in XML.element
           { name = "div"
-          , attributes = XML.emptyAttributes
+          , attributes = [ XML.attribute "id" idString ]
           , content =
             [ XML.element
                 { name = "h2"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text checkSet.name ]
+                , content = [ XML.text (checkSet.name ++ " "), checkLink ]
                 }
             , XML.element
                 { name = "div"
