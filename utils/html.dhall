@@ -73,6 +73,15 @@ let XML/asUl
           , content = Prelude.List.map XML.Type XML.Type (XML/wrap "li") items
           }
 
+let XML/p
+    : Text -> XML.Type
+    = \(text : Text) ->
+        XML.element
+          { name = "p"
+          , attributes = XML.emptyAttributes
+          , content = [ XML.text text ]
+          }
+
 let RfcRef/links
     : Types.RfcRef -> XML.Type
     = \(ref : Types.RfcRef) ->
@@ -81,7 +90,7 @@ let RfcRef/links
           ( Prelude.List.map
               Types.Url
               XML.Type
-              (Url/link "link")
+              (Url/link "ref")
               (Types.RfcRef/urls ref)
           )
 
@@ -109,13 +118,6 @@ let Check/tableRow
     = \(check : Types.Check) ->
         let idString = "valn" ++ Natural/padToText 4 check.id
 
-        let br =
-              XML.element
-                { name = "br"
-                , attributes = XML.emptyAttributes
-                , content = [] : List XML.Type
-                }
-
         let checkLink =
               XML.element
                 { name = "a"
@@ -142,20 +144,13 @@ let Check/tableRow
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text check.desc.text ]
-                }
-
-        let rfcLinksCell =
-              XML.element
-                { name = "td"
-                , attributes = XML.emptyAttributes
-                , content = [ RfcRef/links check.desc ]
+                , content = [ XML/p check.desc.text, RfcRef/links check.desc ]
                 }
 
         let notesUl =
               if    Prelude.List.null Text check.notes.notes
-              then  [ XML.text "no notes.", br ]
-              else  [ XML.text "notes:"
+              then  [ XML/p "no notes." ]
+              else  [ XML/p "notes:"
                     , XML/asUl
                         "notes"
                         ( Prelude.List.map
@@ -168,26 +163,23 @@ let Check/tableRow
 
         let implsUl =
               if    Prelude.List.null Types.CodeRef check.code.refs
-              then  [ XML.text "no refs to code.", br ]
-              else  [ XML.text "code refs:", CodeRefs/asUl "impls" check.code ]
+              then  [ XML/p "no refs to code." ]
+              else  [ XML/p "code refs:", CodeRefs/asUl "impls" check.code ]
 
         let testsUl =
               if    Prelude.List.null Types.CodeRef check.test.refs
-              then  [ XML.text "no refs to tests.", br ]
-              else  [ XML.text "test refs:", CodeRefs/asUl "test" check.test ]
+              then  [ XML/p "no refs to tests." ]
+              else  [ XML/p "test refs:", CodeRefs/asUl "test" check.test ]
 
         let codeSearchA =
-              [ XML.element
-                  { name = "a"
-                  , attributes =
-                    [ XML.attribute
-                        "href"
-                        (     "https://github.com/search?type=code&q=repo%3Aopenmls%2Fopenmls%20"
-                          ++  idString
-                        )
-                    ]
-                  , content = [ XML.text "search code", br ]
-                  }
+              [ XML/wrap
+                  "p"
+                  ( Url/link
+                      "search code"
+                      (     "https://github.com/search?type=code&q=repo%3Aopenmls%2Fopenmls%20"
+                        ++  idString
+                      )
+                  )
               ]
 
         let notesCell =
@@ -200,8 +192,7 @@ let Check/tableRow
         in  XML.element
               { name = "tr"
               , attributes = [ XML.attribute "id" idString ]
-              , content =
-                [ idCell, statusCell, descCell, rfcLinksCell, notesCell ]
+              , content = [ idCell, statusCell, descCell, notesCell ]
               }
 
 let thead =
@@ -223,11 +214,6 @@ let thead =
                 { name = "th"
                 , attributes = XML.emptyAttributes
                 , content = [ XML.text "description" ]
-                }
-            , XML.element
-                { name = "th"
-                , attributes = XML.emptyAttributes
-                , content = [ XML.text "links" ]
                 }
             , XML.element
                 { name = "th"
