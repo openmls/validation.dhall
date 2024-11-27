@@ -97,11 +97,16 @@ let checks =
                 ''
                 "section-12.4.2-2.5"
             )
-            types.Status.Unknown
+            types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
             ( types.Notes/single
-                "of course you need all the proposals and all the psks before being able to apply the commit... This is implicit in the code"
+                ''
+                It's a bit unclear what is meant by this - do they mean the _proposal_ is available, or the _PSK_ is available?
+                Because we know the proposal is available, otherwise we'd have a hard time processing it.
+                We also fail if PSKs are missing.
+                We need to test that we do the right thing here.
+                ''
             )
         , types.Check/new
             6
@@ -119,7 +124,9 @@ let checks =
                 "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L243-L246"
             )
             types.CodeRefs/empty
-            (types.Notes/single "todo: find test refs")
+            ( types.Notes/single
+                "TODO: Find Tests and reference them here or annotate them"
+            )
         , types.Check/new
             7
             ( types.RfcRef/new
@@ -130,10 +137,14 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.2" ]
             )
-            types.Status.Missing
+            types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/single
+                ''
+                This is done when parsing the update path
+                ''
+            )
         , types.Check/new
             8
             ( types.RfcRef/new
@@ -144,10 +155,12 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.3" ]
             )
-            types.Status.Missing
+            types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            ( types.Notes/simple
+                "we check that it is different from the keys of _any_ current member. Still need to test this check."
+            )
         , types.Check/new
             9
             ( types.RfcRef/new

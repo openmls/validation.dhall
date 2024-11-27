@@ -80,7 +80,7 @@ let checks =
               ''
               "section-12.2-3.4"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/new
@@ -88,9 +88,7 @@ let checks =
                 reported in https://github.com/xmtp/openmls/pull/19
                 ''
               , ''
-                this check seems contradictory; if a forbidden thing happens, use this
-                resolution strategy. We likely don't do the right thing, but it's also
-                not clear what the right thing would be.
+                We do the check but need to test it.
                 ''
               ]
           )
@@ -104,7 +102,7 @@ let checks =
               ''
               "section-12.2-3.5"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/new
@@ -112,8 +110,9 @@ let checks =
                 reported in https://github.com/xmtp/openmls/pull/19
                 ''
               , ''
-                possibly an app-level concern, but then we at least need to give the app the
-                tools to valiate this
+                We check that keys are unique.
+                Beyond that it's an application-level concern.
+                We still need to give the app an API to validate this.
                 ''
               ]
           )
@@ -128,7 +127,7 @@ let checks =
               ''
               "section-12.2-3.6"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/new
@@ -136,8 +135,9 @@ let checks =
                 reported in https://github.com/xmtp/openmls/pull/19
                 ''
               , ''
-                possibly an app-level concern, but then we at least need to give the app the
-                tools to valiate this
+                We check that keys are unique.
+                Beyond that it's an application-level concern.
+                We still need to give the app an API to validate this.
                 ''
               ]
           )
@@ -187,10 +187,14 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          ( types.Notes/single
-              ''
-              reported in https://github.com/xmtp/openmls/pull/19
-              ''
+          ( types.Notes/new
+              [ ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+              , ''
+                We don't support ReInit yet
+                ''
+              ]
           )
       , types.Check/new
           10
@@ -198,13 +202,17 @@ let checks =
               "It contains an ExternalInit proposal."
               "section-12.2-3.10"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          ( types.Notes/single
-              ''
-              reported in https://github.com/xmtp/openmls/pull/19
-              ''
+          ( types.Notes/new
+              [ ''
+                Check is in code, need tests
+                ''
+              , ''
+                reported in https://github.com/xmtp/openmls/pull/19
+                ''
+              ]
           )
       , types.Check/new
           11
@@ -217,12 +225,12 @@ let checks =
               ''
               "section-12.2-3.11"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/single
               ''
-              reported in https://github.com/xmtp/openmls/pull/19
+              implemented, still needs tests
               ''
           )
       , types.Check/new
@@ -238,7 +246,12 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              This is difficult to check, because at that point the state has already been changed.
+              It would be nice if we instead could show before applying the diff, that applying the diff will result in a valid tree.
+              ''
+          )
       ]
 
 in  types.CheckSet/new id name desc checks

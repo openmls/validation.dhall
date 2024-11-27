@@ -41,7 +41,7 @@ let checks =
               ''
               "section-10.1-4.2"
           )
-          types.Status.Unknown
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/single
