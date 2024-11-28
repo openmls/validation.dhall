@@ -26,7 +26,7 @@ let checks =
       [ types.Check/new
           1
           (types.RfcRef/single "Exactly one ExternalInit" "section-12.2-6.1")
-          types.Status.Unknown
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           types.Notes/empty
@@ -58,17 +58,23 @@ let checks =
               "Zero or more PreSharedKey proposals"
               "section-12.2-6.3"
           )
-          types.Status.Unknown
+          types.Status.Complete
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              ''
+              Since we can only include a non-negative integer number of proposals, it necessarily is "zero or more". There is no check required.
+              ''
+          )
       , types.Check/new
           4
           (types.RfcRef/single "No other proposals" "section-12.2-6.4")
-          types.Status.Unknown
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          ( types.Notes/single
+              "The check is implemented, but we need to test that we do it correctly"
+          )
       ]
 
 in  types.CheckSet/new id name desc checks

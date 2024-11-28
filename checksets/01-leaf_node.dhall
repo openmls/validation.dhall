@@ -27,7 +27,7 @@ let checks =
             types.CodeRefs/empty
             types.CodeRefs/empty
             ( types.Notes/single
-                "maybe this should be an application-level check?"
+                "This is about what leaf nodes get passed into OpenMLS rather than what we do with them. Therefore this is an application-level check."
             )
         , types.Check/new
             2
@@ -121,10 +121,10 @@ let checks =
                 ''
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.2" ]
             )
-            types.Status.Missing
+            types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
-            types.Notes/empty
+            (types.Notes/single "check is implemented, still needs to be tested.")
         , types.Check/new
             7
             ( types.RfcRef/single
@@ -191,7 +191,10 @@ let checks =
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.3" ]
             )
             types.Status.Partial
-            (types.CodeRefs/single "openmls::treesync::treekem::UpdatePathIn::into_verified" "https://github.com/openmls/openmls/blob/20042d7ed0df813cbe792a2c216092d85845dff4/openmls/src/treesync/treekem.rs#L411-L423")
+            ( types.CodeRefs/single
+                "openmls::treesync::treekem::UpdatePathIn::into_verified"
+                "https://github.com/openmls/openmls/blob/20042d7ed0df813cbe792a2c216092d85845dff4/openmls/src/treesync/treekem.rs#L411-L423"
+            )
             types.CodeRefs/empty
             (types.Notes/single "TODO: find and document where this is tested")
         , types.Check/new
