@@ -102,9 +102,6 @@ let checks =
             types.CodeRefs/empty
             ( types.Notes/single
                 ''
-                It's a bit unclear what is meant by this - do they mean the _proposal_ is available, or the _PSK_ is available?
-                Because we know the proposal is available, otherwise we'd have a hard time processing it.
-                We also fail if PSKs are missing.
                 We need to test that we do the right thing here.
                 ''
             )

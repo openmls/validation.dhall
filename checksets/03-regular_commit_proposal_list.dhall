@@ -192,7 +192,7 @@ let checks =
                 reported in https://github.com/xmtp/openmls/pull/19
                 ''
               , ''
-                We don't support ReInit yet
+                We don't support ReInit yet (<a href="https://github.com/openmls/openmls/issues/1685">openmls#1685</a>)
                 ''
               ]
           )

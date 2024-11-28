@@ -27,7 +27,7 @@ let checks =
             types.CodeRefs/empty
             types.CodeRefs/empty
             ( types.Notes/single
-                "This is about what leaf nodes get passed into OpenMLS rather than what we do with them. Therefore this is more of an application-level check."
+                "This is about what leaf nodes get passed into OpenMLS rather than what we do with them. Therefore this is an application-level check."
             )
         , types.Check/new
             2
@@ -124,7 +124,7 @@ let checks =
             types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
-            (types.Notes/single "check is implemented, still need to test it.")
+            (types.Notes/single "check is implemented, still needs to be tested.")
         , types.Check/new
             7
             ( types.RfcRef/single
