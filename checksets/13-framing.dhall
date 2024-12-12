@@ -106,6 +106,27 @@ let checks =
           types.CodeRefs/empty
           types.CodeRefs/empty
           (types.Notes/single "todo: find test refs")
+      , types.Check/new
+          7
+          ( types.RfcRef/single
+              ''
+              On receiving a FramedContent containing a Proposal, a client MUST verify the signature
+              inside FramedContentAuthData and that the epoch field of the enclosing FramedContent
+              is equal to the epoch field of the current GroupContext object. If the verification is
+              successful, then the Proposal should be cached in such a way that it can be retrieved
+              by hash (as a ProposalOrRef object) in a later Commit message.
+              ''
+              "section-12.1-3"
+          )
+          types.Status.Missing
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          ( types.Notes/single
+              ''
+              We return the decoded and otherwise validated proposal to the application and let them
+              decide whether to store it or not.
+              ''
+          )
       ]
 
 in  types.CheckSet/new id name desc checks
