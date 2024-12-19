@@ -118,15 +118,10 @@ let checks =
               ''
               "section-12.1-3"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          ( types.Notes/single
-              ''
-              We return the decoded and otherwise validated proposal to the application and let them
-              decide whether to store it or not.
-              ''
-          )
+          (types.Notes/single "todo: proper testing")
       ]
 
 in  types.CheckSet/new id name desc checks
