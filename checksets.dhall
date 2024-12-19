@@ -10,4 +10,5 @@
 , ./checksets/10-groupcontextextensions_proposal.dhall
 , ./checksets/11-update-path.dhall
 , ./checksets/12-commit.dhall
+, ./checksets/13-framing.dhall
 ]
