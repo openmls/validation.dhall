@@ -84,6 +84,20 @@ let checks =
           )
           types.CodeRefs/empty
           (types.Notes/single "todo: add test ref")
+      , types.Check/new
+          5
+          ( types.RfcRef/single
+              ''
+              If a client receives a KeyPackage carried within an MLSMessage object, then it MUST
+              verify that the version field of the KeyPackage has the same value as the version
+              field of the MLSMessage.
+              ''
+              "section-10-7"
+          )
+          types.Status.Partial
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          (types.Notes/single "todo: add test ref")
       ]
 
 in  types.CheckSet/new id name desc checks
