@@ -75,6 +75,61 @@ let checks =
           ( types.Notes/single
               "The check is implemented, but we need to test that we do it correctly"
           )
+      , types.Check/new
+          5
+          ( types.RfcRef/single
+              ''
+              External Commits MUST contain a path field (and is therefore a "full" Commit). The joiner is added at the leftmost free leaf node
+              (just as if they were added with an Add proposal), and the path is calculated relative to that leaf node.
+              ''
+              "section-12.4.3.2-11.1")
+          types.Status.Partial
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          ( types.Notes/single
+              "The check is implemented, but we need to test that we do it correctly"
+          )
+      , types.Check/new
+          6
+          ( types.RfcRef/single
+              ''
+              The Commit MUST NOT include any proposals by reference, since an external joiner cannot determine the validity of proposals sent
+              within the group.
+              ''
+              "section-12.4.3.2-11.2")
+          types.Status.Partial
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          ( types.Notes/single
+              "The check is implemented, but we need to test that we do it correctly"
+          )
+      , types.Check/new
+          7
+          ( types.RfcRef/single
+              ''
+              External Commits MUST be signed by the new member. In particular, the signature on the enclosing AuthenticatedContent MUST verify
+              using the public key for the credential in the leaf_node of the path field.
+              ''
+              "section-12.4.3.2-11.3")
+          types.Status.Partial
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          ( types.Notes/single
+              "The check is implemented, but we need to test that we do it correctly"
+          )
+      , types.Check/new
+          8
+          ( types.RfcRef/single
+              ''
+              The sender type for the AuthenticatedContent encapsulating the external Commit MUST be new_member_commit.
+              ''
+              "section-12.4.3.2-11.5")
+          types.Status.Partial
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          ( types.Notes/single
+              "This is implicit, because it's the value on which our decision how to process the message is based."
+          )
       ]
 
 in  types.CheckSet/new id name desc checks
