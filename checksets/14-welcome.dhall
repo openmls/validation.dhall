@@ -27,7 +27,7 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "reinit and branch are not implement so far")
       , types.Check/new
           2
           ( types.RfcRef/single
@@ -39,10 +39,10 @@ let checks =
               ''
               "section-12.4.3.1-12.1"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           3
           ( types.RfcRef/single
@@ -55,7 +55,7 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "This is an application-level concern. We only handle individual groups")
       , types.Check/new
           4
           ( types.RfcRef/single
@@ -68,7 +68,15 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single 
+              ''
+              This one is a bit unclear. It does not clearly state which key package is meant
+              (though we can guess it's the new member's key package), and also GroupInfo itself
+              doesn't even have a cipher_suite.
+              And what about the cipher_suite of the Welcome message itself?
+              The current status is that we don't do the check, be compare the cipher_suite fields
+              of key package and welcome message.
+              '')
       , types.Check/new
           5
           ( types.RfcRef/new
@@ -78,10 +86,10 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.1" ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           6
           ( types.RfcRef/new
@@ -92,10 +100,10 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.2" ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           7
           ( types.RfcRef/new
@@ -105,10 +113,10 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.3" ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           8
           ( types.RfcRef/new
@@ -149,16 +157,17 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.4.1", "section-12.4.3.1-12.4.2.4.2.3" ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           11
           ( types.RfcRef/new
               ''
               Verify the integrity of the ratchet tree: 
-              Verify the confirmation tag in the GroupInfo using the derived confirmation key and the confirmed_transcript_hash from the GroupInfo.
+              Verify the confirmation tag in the GroupInfo using the derived confirmation key and
+              the confirmed_transcript_hash from the GroupInfo.
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.9" ]
           )
@@ -179,7 +188,7 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "reinit isn't currently implemented")
       , types.Check/new
           13
           ( types.RfcRef/new
