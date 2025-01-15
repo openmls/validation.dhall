@@ -124,7 +124,9 @@ let checks =
             types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
-            (types.Notes/single "check is implemented, still needs to be tested.")
+            ( types.Notes/single
+                "check is implemented, still needs to be tested."
+            )
         , types.Check/new
             7
             ( types.RfcRef/single
