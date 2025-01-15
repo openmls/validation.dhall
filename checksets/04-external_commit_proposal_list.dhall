@@ -44,12 +44,14 @@ let checks =
               ''
               "section-12.2-6.2"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
           ( types.Notes/single
               ''
-              reported in https://github.com/xmtp/openmls/pull/19
+              We are checking that there are is not more than one Remove proposal
+              in external commits, but the application has to ensure that the
+              provided key package satisfies the requirements.
               ''
           )
       , types.Check/new
