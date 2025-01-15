@@ -55,7 +55,9 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          (types.Notes/single "This is an application-level concern. We only handle individual groups")
+          ( types.Notes/single
+              "This is an application-level concern. We only handle individual groups"
+          )
       , types.Check/new
           4
           ( types.RfcRef/single
@@ -68,15 +70,16 @@ let checks =
           types.Status.Missing
           types.CodeRefs/empty
           types.CodeRefs/empty
-          (types.Notes/single 
+          ( types.Notes/single
               ''
-              This one is a bit unclear. It does not clearly state which key package is meant
+              This one is a bit unclear. It does not clearly stated which key package is meant
               (though we can guess it's the new member's key package), and also GroupInfo itself
               doesn't even have a cipher_suite.
               And what about the cipher_suite of the Welcome message itself?
               The current status is that we don't do the check, be compare the cipher_suite fields
               of key package and welcome message.
-              '')
+              ''
+          )
       , types.Check/new
           5
           ( types.RfcRef/new
@@ -121,16 +124,20 @@ let checks =
           8
           ( types.RfcRef/new
               ''
-              Verify the integrity of the ratchet tree: 
+              Verify the integrity of the ratchet tree:
               For each non-empty parent node and each entry in the node's unmerged_leaves field:
-              Verify that the entry represents a non-blank leaf node that is a descendant of the parent node.
+              Verify that the entry represents a non-blank leaf node that is a descendant of the
+              parent node.
               ''
-              [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.4.1", "section-12.4.3.1-12.4.2.4.2.1" ]
+              [ "section-12.4.3.1-12.4.1"
+              , "section-12.4.3.1-12.4.2.4.1"
+              , "section-12.4.3.1-12.4.2.4.2.1"
+              ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           9
           ( types.RfcRef/new
@@ -140,12 +147,15 @@ let checks =
               Verify that every non-blank intermediate node between the leaf node and the parent
               node also has an entry for the leaf node in its unmerged_leaves.
               ''
-              [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.4.1", "section-12.4.3.1-12.4.2.4.2.2" ]
+              [ "section-12.4.3.1-12.4.1"
+              , "section-12.4.3.1-12.4.2.4.1"
+              , "section-12.4.3.1-12.4.2.4.2.2"
+              ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           10
           ( types.RfcRef/new
@@ -155,7 +165,10 @@ let checks =
               Verify that the encryption key in the parent node does not appear in any other node of
               the tree.
               ''
-              [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.4.1", "section-12.4.3.1-12.4.2.4.2.3" ]
+              [ "section-12.4.3.1-12.4.1"
+              , "section-12.4.3.1-12.4.2.4.1"
+              , "section-12.4.3.1-12.4.2.4.2.3"
+              ]
           )
           types.Status.Partial
           types.CodeRefs/empty
@@ -224,4 +237,3 @@ let checks =
       ]
 
 in  types.CheckSet/new id name desc checks
-
