@@ -67,18 +67,22 @@ let checks =
               ''
               "section-12.4.3.1-12.3"
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          ( types.Notes/single
-              ''
-              This one is a bit unclear. It does not clearly stated which key package is meant
-              (though we can guess it's the new member's key package), and also GroupInfo itself
-              doesn't even have a cipher_suite.
-              And what about the cipher_suite of the Welcome message itself?
-              The current status is that we don't do the check, be compare the cipher_suite fields
-              of key package and welcome message.
-              ''
+          ( types.Notes/new
+              [ ''
+                This one is a bit unclear. It does not clearly stated which key package is meant
+                (though we can guess it's the new member's key package), and also GroupInfo itself
+                doesn't even have a cipher_suite (but the GroupContext in there does).
+                ''
+              , "And what about the cipher_suite of the Welcome message itself?"
+              , ''
+                The current status is that we do the check and compare the group context cipher
+                suite with that of the key package of the new member. We also check that they
+                match with the welcome message.
+                ''
+              ]
           )
       , types.Check/new
           5
@@ -184,10 +188,10 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.9" ]
           )
-          types.Status.Missing
+          types.Status.Partial
           types.CodeRefs/empty
           types.CodeRefs/empty
-          types.Notes/empty
+          (types.Notes/single "The test might be missing")
       , types.Check/new
           12
           ( types.RfcRef/new
