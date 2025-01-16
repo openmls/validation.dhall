@@ -155,7 +155,7 @@ let checks =
             types.Status.Partial
             types.CodeRefs/empty
             types.CodeRefs/empty
-            ( types.Notes/simple
+            ( types.Notes/single
                 "we check that it is different from the keys of _any_ current member. Still need to test this check."
             )
         , types.Check/new
