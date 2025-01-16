@@ -72,7 +72,7 @@ let checks =
           types.CodeRefs/empty
           ( types.Notes/new
               [ ''
-                This one is a bit unclear. It does not clearly stated which key package is meant
+                This one is a bit unclear. It does not clearly state which key package is meant
                 (though we can guess it's the new member's key package), and also GroupInfo itself
                 doesn't even have a cipher_suite (but the GroupContext in there does).
                 ''

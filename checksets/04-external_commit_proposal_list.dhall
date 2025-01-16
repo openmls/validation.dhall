@@ -49,7 +49,7 @@ let checks =
           types.CodeRefs/empty
           ( types.Notes/single
               ''
-              We are checking that there are is not more than one Remove proposal
+              We are checking that there is not more than one Remove proposal
               in external commits, but the application has to ensure that the
               provided key package satisfies the requirements.
               ''
