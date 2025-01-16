@@ -11,4 +11,5 @@
 , ./checksets/11-update-path.dhall
 , ./checksets/12-commit.dhall
 , ./checksets/13-framing.dhall
+, ./checksets/14-welcome.dhall
 ]
