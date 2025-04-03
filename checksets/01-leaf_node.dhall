@@ -231,6 +231,18 @@ let checks =
             )
             types.CodeRefs/empty
             (types.Notes/single "todo: add test ref")
+        , types.Check/new
+            13
+            ( types.RfcRef/new
+                ''
+                Verify that the credential type used in the LeafNode is included in the credentials field of the capabilities field.
+                ''
+                [ "section-7.2-7" ]
+            )
+            types.Status.Partial
+            types.CodeRefs/empty
+            types.CodeRefs/empty
+            (types.Notes/single "todo: add test ref")
         ]
       : List types.Check
 
