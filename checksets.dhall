@@ -12,4 +12,5 @@
 , ./checksets/12-commit.dhall
 , ./checksets/13-framing.dhall
 , ./checksets/14-welcome.dhall
+, ./checksets/15-external_proposal.dhall
 ]
