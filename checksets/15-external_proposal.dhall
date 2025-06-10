@@ -59,10 +59,10 @@ let checks =
               ''
               ["section-6.1-4", "section-6.1-5.4"]
           )
-          types.Status.Missing
+          types.Status.Complete
           types.CodeRefs/empty
           types.CodeRefs/empty
-          (types.Notes/single "todo: add test refs")
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks
