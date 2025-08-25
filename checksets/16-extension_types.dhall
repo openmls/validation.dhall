@@ -2,7 +2,7 @@ let types = ../types.dhall
 
 let id = 16
 
-let name = "Extension Types"
+let name = "Extension Type Validation"
 
 let descText =
       ''
