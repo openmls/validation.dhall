@@ -13,4 +13,5 @@
 , ./checksets/13-framing.dhall
 , ./checksets/14-welcome.dhall
 , ./checksets/15-external_proposal.dhall
+, ./checksets/16-extension_types.dhall
 ]
