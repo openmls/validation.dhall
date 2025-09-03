@@ -1,0 +1,22 @@
+name: Lint Dhall Code
+
+on:
+  pull_request:
+    paths: # Only run on changes to Dhall files
+      - '**.dhall'
+  workflow_dispatch: # Allows manual runs
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dhall-lang/setup-dhall@v4
+        with:
+          version: '1.41.0'
+
+      - name: Run Linter
+        run: file -name '*.dhall' -exec dhall lint --check {} +
+
