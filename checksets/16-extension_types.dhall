@@ -10,7 +10,7 @@ let descText =
 	The "MLS Extension Types" registry lists identifiers for extensions to the MLS protocol.
       </p>
       <p>
-	This checkset lists the extension types that are valid for each object, not including GREASE values.
+	This checkset lists the extension types that are valid for each object.
       </p>
       <ul>
 	<li>KP: KeyPackage objects</li>
@@ -27,7 +27,7 @@ let checks =
           1
           ( types.RfcRef/new
               ''
-	      LN: application_id
+	      LeafNode: application_id, GREASE
               ''
               ["section-17.3-3.3.1", "section-17.3-4"]
           )
@@ -39,7 +39,7 @@ let checks =
           2
           ( types.RfcRef/new
               ''
-              GI: ratchet_tree, external_pub
+              GroupInfo: ratchet_tree, external_pub, GREASE
               ''
               ["section-17.3-3.3.1", "section-17.3-4"]
           )
@@ -51,7 +51,19 @@ let checks =
           3
           ( types.RfcRef/new
               ''
-              GC: required_capabilities, external_senders
+              GroupContext: required_capabilities, external_senders
+              ''
+              ["section-17.3-3.3.1", "section-17.3-4"]
+          )
+          types.Status.Unknown
+          types.CodeRefs/empty
+          types.CodeRefs/empty
+          (types.Notes/empty)
+	, types.Check/new
+          4
+          ( types.RfcRef/new
+              ''
+              KeyPackage: GREASE
               ''
               ["section-17.3-3.3.1", "section-17.3-4"]
           )
