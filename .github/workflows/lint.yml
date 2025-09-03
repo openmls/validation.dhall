@@ -18,5 +18,5 @@ jobs:
           version: '1.41.0'
 
       - name: Run Linter
-        run: file -name '*.dhall' -exec dhall lint --check {} +
+        run: find -name '*.dhall' -exec dhall lint --check {} +
 
