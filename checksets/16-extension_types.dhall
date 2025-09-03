@@ -10,7 +10,7 @@ let descText =
 	The "MLS Extension Types" registry lists identifiers for extensions to the MLS protocol.
       </p>
       <p>
-	This checkset lists the extension types that are valid for each object.
+	This checkset lists the extension types that are valid for each object, not including GREASE values.
       </p>
       <ul>
 	<li>KP: KeyPackage objects</li>
