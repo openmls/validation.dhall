@@ -25,13 +25,10 @@ let checks =
               ''
               "section-6.1-6"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/new
-              [ "NB: This is about picking the right key, not verifying the signature. That is done in valn1302 and valn1304."
-              , "todo: find test refs"
-              ]
+          types.Status.Complete
+          types.Status.Unknown
+          ( types.Notes/single
+              "NB: This is about picking the right key, not verifying the signature. That is done in valn1302 and valn1304."
           )
       , types.Check/new
           2
@@ -42,10 +39,9 @@ let checks =
               ''
               "section-6.2-6"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: find test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           3
           ( types.RfcRef/single
@@ -62,10 +58,9 @@ let checks =
               ''
               "section-6.3.1-3"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: find test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           4
           ( types.RfcRef/single
@@ -75,10 +70,9 @@ let checks =
               ''
               "section-6.3.1-10"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: find test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           5
           ( types.RfcRef/single
@@ -88,10 +82,9 @@ let checks =
               ''
               "section-6.3.2-3"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: find test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           6
           ( types.RfcRef/single
@@ -102,10 +95,9 @@ let checks =
               ''
               "section-6.3.2-9"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: find test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           7
           ( types.RfcRef/single
@@ -118,10 +110,9 @@ let checks =
               ''
               "section-12.1-3"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: proper testing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks

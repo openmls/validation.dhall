@@ -25,13 +25,9 @@ let checks =
               ''
               "section-12.1.2-3"
           )
-          types.Status.Partial
-          ( types.CodeRefs/single
-              "openmls::messages::proposals_in::UpdateProposalIn::validate"
-              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/messages/proposals_in.rs#L200-L221"
-          )
-          types.CodeRefs/empty
-          (types.Notes/single "todo: add test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks

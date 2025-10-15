@@ -21,13 +21,9 @@ let checks =
                 ''
                 "section-12.4.2-2.1"
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::PublicGroup::validate_commit"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L49-L57"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: find test refs")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             2
             ( types.RfcRef/new
@@ -37,18 +33,9 @@ let checks =
                 ''
                 [ "section-12.4.2-2.2.1", "section-12.4.2-2.2.2.1" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/new
-                [ types.CodeRef/new
-                    "openmls::group::mls_group::MlsGroup::process_message"
-                    "https://github.com/openmls/openmls/blob/main/openmls/src/group/mls_group/processing.rs#L62-L63"
-                , types.CodeRef/new
-                    "openmls::group::public_group::PublicGroup::process_message"
-                    "https://github.com/openmls/openmls/blob/main/openmls/src/group/public_group/process.rs#L149-L157"
-                ]
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test refs")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             3
             ( types.RfcRef/single
@@ -57,18 +44,9 @@ let checks =
                 ''
                 "section-12.4.2-2.3"
             )
-            types.Status.Partial
-            ( types.CodeRefs/new
-                [ types.CodeRef/new
-                    "openmls::group::mls_group::MlsGroup::process_unverified_message"
-                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/mls_group/processing.rs#L273-L274"
-                , types.CodeRef/new
-                    "openmls::group::public_group::PublicGroup::process_unverified_message"
-                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/process.rs#L203-L204"
-                ]
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: find test refs")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             4
             ( types.RfcRef/single
@@ -77,18 +55,9 @@ let checks =
                 ''
                 "section-12.4.2-2.4"
             )
-            types.Status.Partial
-            ( types.CodeRefs/new
-                [ types.CodeRef/new
-                    "openmls::group::mls_group::MlsGroup::stage_commit"
-                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/mls_group/staged_commit.rs#L152-L154"
-                , types.CodeRef/new
-                    "openmls::group::public_group::PublicGroup::stage_commit"
-                    "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L208"
-                ]
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: find test refs")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             5
             ( types.RfcRef/single
@@ -97,14 +66,9 @@ let checks =
                 ''
                 "section-12.4.2-2.5"
             )
-            types.Status.Partial
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                ''
-                We need to test that we do the right thing here.
-                ''
-            )
+            types.Status.Complete
+            types.Status.Missing
+            types.Notes/empty
         , types.Check/new
             6
             ( types.RfcRef/single
@@ -115,15 +79,9 @@ let checks =
                 ''
                 "section-12.4.2-2.7"
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::PublicGroup::stage_diff"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/staged_commit.rs#L243-L246"
-            )
-            types.CodeRefs/empty
-            ( types.Notes/single
-                "TODO: Find Tests and reference them here or annotate them"
-            )
+            types.Status.Complete
+            types.Status.Missing
+            types.Notes/empty
         , types.Check/new
             7
             ( types.RfcRef/new
@@ -134,9 +92,8 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.2" ]
             )
-            types.Status.Partial
-            types.CodeRefs/empty
-            types.CodeRefs/empty
+            types.Status.Complete
+            types.Status.Unknown
             ( types.Notes/single
                 ''
                 This is done when parsing the update path
@@ -152,9 +109,8 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.3" ]
             )
-            types.Status.Partial
-            types.CodeRefs/empty
-            types.CodeRefs/empty
+            types.Status.Complete
+            types.Status.Missing
             ( types.Notes/single
                 "we check that it is different from the keys of _any_ current member. Still need to test this check."
             )
@@ -168,13 +124,9 @@ let checks =
                 ''
                 [ "section-12.4.2-2.8.1", "section-12.4.2-2.8.2.4" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::PublicGroup::validate_key_uniqueness"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L169-L298"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test refs")
+            types.Status.Complete
+            types.Status.Missing
+            types.Notes/empty
         ]
       : List types.Check
 

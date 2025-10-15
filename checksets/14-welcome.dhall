@@ -25,8 +25,7 @@ let checks =
               "section-12.4.3.1-10.1"
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           (types.Notes/single "reinit and branch are not implement so far")
       , types.Check/new
           2
@@ -39,10 +38,9 @@ let checks =
               ''
               "section-12.4.3.1-12.1"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           3
           ( types.RfcRef/single
@@ -53,8 +51,7 @@ let checks =
               "section-12.4.3.1-12.2"
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           ( types.Notes/single
               "This is an application-level concern. We only handle individual groups"
           )
@@ -67,9 +64,8 @@ let checks =
               ''
               "section-12.4.3.1-12.3"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/new
               [ ''
                 This one is a bit unclear. It does not clearly state which key package is meant
@@ -93,10 +89,9 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.1" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           6
           ( types.RfcRef/new
@@ -107,10 +102,9 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.2" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           7
           ( types.RfcRef/new
@@ -120,10 +114,9 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.4.2.3" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           8
           ( types.RfcRef/new
@@ -138,10 +131,9 @@ let checks =
               , "section-12.4.3.1-12.4.2.4.2.1"
               ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           9
           ( types.RfcRef/new
@@ -156,10 +148,9 @@ let checks =
               , "section-12.4.3.1-12.4.2.4.2.2"
               ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           10
           ( types.RfcRef/new
@@ -174,10 +165,9 @@ let checks =
               , "section-12.4.3.1-12.4.2.4.2.3"
               ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           11
           ( types.RfcRef/new
@@ -188,10 +178,9 @@ let checks =
               ''
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.9" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "The test might be missing")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           12
           ( types.RfcRef/new
@@ -203,8 +192,7 @@ let checks =
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.11.1" ]
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           (types.Notes/single "reinit isn't currently implemented")
       , types.Check/new
           13
@@ -220,8 +208,7 @@ let checks =
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.11.2.1" ]
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           (types.Notes/single "reinit isn't currently implemented")
       , types.Check/new
           14
@@ -235,8 +222,7 @@ let checks =
               [ "section-12.4.3.1-12.4.1", "section-12.4.3.1-12.11.2.2" ]
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           (types.Notes/single "branching isn't currently implemented")
       ]
 

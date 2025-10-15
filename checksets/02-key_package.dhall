@@ -26,11 +26,7 @@ let checks =
               "section-10.1-4.1"
           )
           types.Status.Complete
-          types.CodeRefs/empty
-          ( types.CodeRefs/single
-              "openmls::group::tests_and_kats::tests::group_context_extensions::fail_key_package_version_valno201"
-              "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L716-821"
-          )
+          types.Status.Complete
           types.Notes/empty
       , types.Check/new
           2
@@ -41,11 +37,13 @@ let checks =
               ''
               "section-10.1-4.2"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
-              "currently this is only done when processing adds in commit messages"
+              ''
+              This is checked when processing adds in commit messages.
+              It is the responsibility of the caller to validate key packages before using them in Add proposals.
+              ''
           )
       , types.Check/new
           3
@@ -56,12 +54,8 @@ let checks =
               ''
               "section-10.1-4.3"
           )
-          types.Status.Partial
-          ( types.CodeRefs/single
-              "openmls::key_packages::KeyPackageIn::validate"
-              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L150"
-          )
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
               ''
               this looks like a bug in the RFC. It should be signed using leaf_node.signature_key,
@@ -77,13 +71,9 @@ let checks =
               ''
               "section-10.1-4.4"
           )
-          types.Status.Partial
-          ( types.CodeRefs/single
-              "openmls::key_packages::KeyPackageIn::validate"
-              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L160-L163"
-          )
-          types.CodeRefs/empty
-          (types.Notes/single "todo: add test ref")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       , types.Check/new
           5
           ( types.RfcRef/single
@@ -94,10 +84,9 @@ let checks =
               ''
               "section-10-7"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          (types.Notes/single "todo: add test ref")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks

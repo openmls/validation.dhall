@@ -22,9 +22,8 @@ let checks =
               ''
               [ "section-6.1-4", "section-6.1-5.2" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
               "This is implicit, because it's the value on which our decision how to process the message is based."
           )
@@ -36,9 +35,8 @@ let checks =
               ''
               [ "section-6.1-4", "section-6.1-5.2", "section-12.1.8-5" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
               "Not all of the accepted proposal types are implemented yet."
           )
@@ -50,9 +48,8 @@ let checks =
               ''
               [ "section-6.1-4", "section-6.1-5.4" ]
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
               "This is implicit, because it's the value on which our decision how to process the message is based."
           )
@@ -65,8 +62,7 @@ let checks =
               [ "section-6.1-4", "section-6.1-5.4" ]
           )
           types.Status.Complete
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
           types.Notes/empty
       ]
 

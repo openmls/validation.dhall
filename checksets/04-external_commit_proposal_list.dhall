@@ -26,9 +26,8 @@ let checks =
       [ types.Check/new
           1
           (types.RfcRef/single "Exactly one ExternalInit" "section-12.2-6.1")
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           types.Notes/empty
       , types.Check/new
           2
@@ -44,9 +43,8 @@ let checks =
               ''
               "section-12.2-6.2"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
               ''
               We are checking that there is not more than one Remove proposal
@@ -61,8 +59,7 @@ let checks =
               "section-12.2-6.3"
           )
           types.Status.Complete
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
           ( types.Notes/single
               ''
               Since we can only include a non-negative integer number of proposals, it necessarily is "zero or more". There is no check required.
@@ -71,12 +68,9 @@ let checks =
       , types.Check/new
           4
           (types.RfcRef/single "No other proposals" "section-12.2-6.4")
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/single
-              "The check is implemented, but we need to test that we do it correctly"
-          )
+          types.Status.Complete
+          types.Status.Missing
+          types.Notes/empty
       , types.Check/new
           5
           ( types.RfcRef/single
@@ -86,12 +80,9 @@ let checks =
               ''
               "section-12.4.3.2-11.1"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/single
-              "The check is implemented, but we need to test that we do it correctly"
-          )
+          types.Status.Complete
+          types.Status.Missing
+          types.Notes/empty
       , types.Check/new
           6
           ( types.RfcRef/single
@@ -101,12 +92,9 @@ let checks =
               ''
               "section-12.4.3.2-11.2"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/single
-              "The check is implemented, but we need to test that we do it correctly"
-          )
+          types.Status.Complete
+          types.Status.Missing
+          types.Notes/empty
       , types.Check/new
           7
           ( types.RfcRef/single
@@ -116,12 +104,9 @@ let checks =
               ''
               "section-12.4.3.2-11.3"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
-          ( types.Notes/single
-              "The check is implemented, but we need to test that we do it correctly"
-          )
+          types.Status.Complete
+          types.Status.Missing
+          types.Notes/empty
       , types.Check/new
           8
           ( types.RfcRef/single
@@ -130,9 +115,8 @@ let checks =
               ''
               "section-12.4.3.2-11.5"
           )
-          types.Status.Partial
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Complete
+          types.Status.Unknown
           ( types.Notes/single
               "This is implicit, because it's the value on which our decision how to process the message is based."
           )

@@ -29,8 +29,7 @@ let checks =
               "section-12.1.4-4.1"
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           (types.Notes/single "PSK support not implemented")
       , types.Check/new
           2
@@ -43,8 +42,7 @@ let checks =
               "section-12.1.4-4.2"
           )
           types.Status.Missing
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
           (types.Notes/single "PSK support not implemented")
       , types.Check/new
           3
@@ -54,13 +52,9 @@ let checks =
               ''
               "section-12.1.4-4.3"
           )
-          types.Status.Partial
-          ( types.CodeRefs/single
-              "openmls::schedule::psk::PreSharedKeyId::validate_in_proposal"
-              "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/schedule/psk.rs#L314-L324"
-          )
-          types.CodeRefs/empty
-          (types.Notes/single "todo: find test refs")
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks

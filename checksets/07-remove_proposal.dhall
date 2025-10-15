@@ -22,12 +22,8 @@ let checks =
               ''
               "section-12.1.3-3"
           )
+          types.Status.Complete
           types.Status.Partial
-          ( types.CodeRefs/single
-              "openmls::group::PublicGroup::validate_remove_proposals"
-              "https://github.com/openmls/openmls/blob/main/openmls/src/group/public_group/validation.rs#L424"
-          )
-          types.CodeRefs/empty
           ( types.Notes/single
               "the tests we have a are not great. The check and basic tests were added in PR https://github.com/openmls/openmls/pull/1655"
           )

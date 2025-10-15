@@ -41,32 +41,6 @@ let Url/new
     : Text -> Url
     = \(url : Text) -> url
 
-let CodeRef
-    : Type
-    = { modPath : Text, url : Url }
-
-let CodeRef/new
-    : Text -> Url -> CodeRef
-    = \(modPath : Text) -> \(url : Url) -> { modPath, url }
-
-let CodeRefs
-    : Type
-    = { refs : List CodeRef }
-
-let CodeRefs/new
-    : List CodeRef -> CodeRefs
-    = \(refs : List CodeRef) -> { refs }
-
-let CodeRefs/empty
-    : CodeRefs
-    = CodeRefs/new ([] : List CodeRef)
-
-let CodeRefs/single
-    : Text -> Url -> CodeRefs
-    = \(modPath : Text) ->
-      \(url : Url) ->
-        CodeRefs/new [ CodeRef/new modPath url ]
-
 let RfcRef
     : Type
     = { text : Text, rfcFragments : List Text }
@@ -96,21 +70,19 @@ let Check
     : Type
     = { id : Natural
       , desc : RfcRef
-      , status : Status
-      , code : CodeRefs
-      , test : CodeRefs
+      , implStatus : Status
+      , testStatus : Status
       , notes : Notes
       }
 
 let Check/new
-    : Natural -> RfcRef -> Status -> CodeRefs -> CodeRefs -> Notes -> Check
+    : Natural -> RfcRef -> Status -> Status -> Notes -> Check
     = \(id : Natural) ->
       \(desc : RfcRef) ->
-      \(status : Status) ->
-      \(code : CodeRefs) ->
-      \(test : CodeRefs) ->
+      \(implStatus : Status) ->
+      \(testStatus : Status) ->
       \(notes : Notes) ->
-        { id, desc, status, notes, code, test }
+        { id, desc, implStatus, testStatus, notes }
 
 let CheckSet
     : Type
@@ -160,13 +132,7 @@ let CheckSet/checkById
               checkSet.checks
           )
 
-in  { CodeRef
-    , CodeRef/new
-    , CodeRefs
-    , CodeRefs/new
-    , CodeRefs/empty
-    , CodeRefs/single
-    , Notes
+in  { Notes
     , Notes/new
     , Notes/single
     , Notes/empty
