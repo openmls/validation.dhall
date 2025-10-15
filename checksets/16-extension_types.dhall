@@ -32,8 +32,7 @@ let checks =
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Unknown
           types.Notes/empty
       , types.Check/new
           2
@@ -44,8 +43,7 @@ let checks =
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Unknown
           types.Notes/empty
       , types.Check/new
           3
@@ -56,8 +54,7 @@ let checks =
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Unknown
           types.Notes/empty
       , types.Check/new
           4
@@ -68,8 +65,7 @@ let checks =
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Unknown
           types.Notes/empty
       ]
 

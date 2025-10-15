@@ -26,9 +26,8 @@ let checks =
               ''
               "section-12.1.5-3"
           )
-          types.Status.Unknown
-          types.CodeRefs/empty
-          types.CodeRefs/empty
+          types.Status.Missing
+          types.Status.Missing
           (types.Notes/single "this feature is not implemented")
       ]
 

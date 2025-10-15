@@ -24,8 +24,7 @@ let checks =
                 "section-7.3-4.1"
             )
             types.Status.Unknown
-            types.CodeRefs/empty
-            types.CodeRefs/empty
+            types.Status.Unknown
             ( types.Notes/single
                 "This is about what leaf nodes get passed into OpenMLS rather than what we do with them. Therefore this is an application-level check."
             )
@@ -35,30 +34,17 @@ let checks =
                 "Verify that the signature on the LeafNode is valid using signature_key."
                 "section-7.3-4.2"
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::key_packages::KeyPackageIn::validate"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L150"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test ref")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             3
             ( types.RfcRef/single
                 "Verify that the LeafNode is compatible with the group's parameters. If the GroupContext has a required_capabilities extension, then the required extensions, proposals, and credential types MUST be listed in the LeafNode's capabilities field."
                 "section-7.3-4.3"
             )
+            types.Status.Complete
             types.Status.Partial
-            types.CodeRefs/empty
-            ( types.CodeRefs/new
-                [ types.CodeRef/new
-                    "openmls::group::tests_and_kats::tests::group_context_extensions::fail_insufficient_capabilities_add_valno103"
-                    "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L430-L539"
-                , types.CodeRef/new
-                    "openmls::group::tests_and_kats::tests::group_context_extensions::fail_insufficient_capabilities_update_valno103"
-                    "https://github.com/openmls/openmls/blob/96c38a806f9c706d2cf67566c9c846eee3ac4430/openmls/src/group/tests_and_kats/tests/group_context_extensions.rs#L541-L714"
-                ]
-            )
             ( types.Notes/new
                 [ "reported in https://github.com/xmtp/openmls/pull/19"
                 , "We currently test this when an Add and Update proposal is being committed."
@@ -76,13 +62,9 @@ let checks =
                 ''
                 "section-7.3-4.4"
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::validation::validate_capabilities"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L303-L383"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test refs")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             5
             ( types.RfcRef/new
@@ -94,18 +76,13 @@ let checks =
                 ''
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.1" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::key_packages::KeyPackageIn::validate"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L193-L194"
-            )
-            types.CodeRefs/empty
-            ( types.Notes/new
-                [ ''
-                  probably only done for key packages, but these should be the only
-                  leaf nodes with lifetimes anyway''
-                , "todo: add test refs"
-                ]
+            types.Status.Complete
+            types.Status.Unknown
+            ( types.Notes/single
+                ''
+                probably only done for key packages, but these should be the only
+                leaf nodes with lifetimes anyway
+                ''
             )
         , types.Check/new
             6
@@ -121,12 +98,9 @@ let checks =
                 ''
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.2" ]
             )
-            types.Status.Partial
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            ( types.Notes/single
-                "check is implemented, still needs to be tested."
-            )
+            types.Status.Complete
+            types.Status.Missing
+            types.Notes/empty
         , types.Check/new
             7
             ( types.RfcRef/single
@@ -137,13 +111,9 @@ let checks =
                 ''
                 "section-7.3-4.6"
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::validation::validate_capabilities"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L303-L383"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test ref")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             8
             ( types.RfcRef/new
@@ -153,13 +123,9 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.1" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::key_packages::KeyPackageIn::validate"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/key_packages/key_package_in.rs#L148-L154"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test refs")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             9
             ( types.RfcRef/new
@@ -171,17 +137,9 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.2" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::PublicGroup::validate_key_uniqueness"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L280-L282"
-            )
-            types.CodeRefs/empty
-            ( types.Notes/new
-                [ "we might be more restrictive here, because we don't accept colliding keys at all, not just in Update proposals"
-                , "todo: add test refs"
-                ]
-            )
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             10
             ( types.RfcRef/new
@@ -192,13 +150,9 @@ let checks =
                 ''
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.3" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::treesync::treekem::UpdatePathIn::into_verified"
-                "https://github.com/openmls/openmls/blob/20042d7ed0df813cbe792a2c216092d85845dff4/openmls/src/treesync/treekem.rs#L411-L423"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "TODO: find and document where this is tested")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             11
             ( types.RfcRef/new
@@ -208,13 +162,9 @@ let checks =
                 ''
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.1" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::validation::validate_key_uniqueness"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L169-L298"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test ref")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             12
             ( types.RfcRef/new
@@ -224,13 +174,9 @@ let checks =
                 ''
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.2" ]
             )
-            types.Status.Partial
-            ( types.CodeRefs/single
-                "openmls::group::public_group::validation::validate_key_uniqueness"
-                "https://github.com/openmls/openmls/blob/5067034708f2332b0dfd8d7d28eb6618fd38f4c7/openmls/src/group/public_group/validation.rs#L169-L298"
-            )
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test ref")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         , types.Check/new
             13
             ( types.RfcRef/new
@@ -239,10 +185,9 @@ let checks =
                 ''
                 [ "section-7.2-7" ]
             )
-            types.Status.Partial
-            types.CodeRefs/empty
-            types.CodeRefs/empty
-            (types.Notes/single "todo: add test ref")
+            types.Status.Complete
+            types.Status.Unknown
+            types.Notes/empty
         ]
       : List types.Check
 

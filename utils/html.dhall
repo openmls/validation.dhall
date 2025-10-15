@@ -94,25 +94,6 @@ let RfcRef/links
               (Types.RfcRef/urls ref)
           )
 
-let CodeRefs/asUl
-    : Text -> Types.CodeRefs -> XML.Type
-    = \(name : Text) ->
-      \(ref : Types.CodeRefs) ->
-        XML/asUl
-          name
-          ( Prelude.List.map
-              Types.CodeRef
-              XML.Type
-              ( \(codeRef : Types.CodeRef) ->
-                  XML.element
-                    { name = "a"
-                    , attributes = [ XML.attribute "href" codeRef.url ]
-                    , content = [ XML.text codeRef.modPath ]
-                    }
-              )
-              ref.refs
-          )
-
 let Check/tableRow
     : Types.Check -> XML.Type
     = \(check : Types.Check) ->
@@ -133,11 +114,18 @@ let Check/tableRow
                   [ XML.text idString, XML.rawText "&nbsp;", checkLink ]
                 }
 
-        let statusCell =
+        let implStatusCell =
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text (Types.Status/show check.status) ]
+                , content = [ XML.text (Types.Status/show check.implStatus) ]
+                }
+
+        let testStatusCell =
+              XML.element
+                { name = "td"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text (Types.Status/show check.testStatus) ]
                 }
 
         let descCell =
@@ -161,16 +149,6 @@ let Check/tableRow
                         )
                     ]
 
-        let implsUl =
-              if    Prelude.List.null Types.CodeRef check.code.refs
-              then  [ XML/p "no refs to code." ]
-              else  [ XML/p "code refs:", CodeRefs/asUl "impls" check.code ]
-
-        let testsUl =
-              if    Prelude.List.null Types.CodeRef check.test.refs
-              then  [ XML/p "no refs to tests." ]
-              else  [ XML/p "test refs:", CodeRefs/asUl "test" check.test ]
-
         let codeSearchA =
               [ XML/wrap
                   "p"
@@ -186,13 +164,14 @@ let Check/tableRow
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = codeSearchA # notesUl # implsUl # testsUl
+                , content = codeSearchA # notesUl
                 }
 
         in  XML.element
               { name = "tr"
               , attributes = [ XML.attribute "id" idString ]
-              , content = [ idCell, statusCell, descCell, notesCell ]
+              , content =
+                [ idCell, implStatusCell, testStatusCell, descCell, notesCell ]
               }
 
 let thead =
@@ -208,7 +187,12 @@ let thead =
             , XML.element
                 { name = "th"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text "status" ]
+                , content = [ XML.text "check implemented" ]
+                }
+            , XML.element
+                { name = "th"
+                , attributes = XML.emptyAttributes
+                , content = [ XML.text "check tested" ]
                 }
             , XML.element
                 { name = "th"
@@ -218,7 +202,7 @@ let thead =
             , XML.element
                 { name = "th"
                 , attributes = XML.emptyAttributes
-                , content = [ XML.text "notes & code refs" ]
+                , content = [ XML.text "notes" ]
                 }
             ]
         )

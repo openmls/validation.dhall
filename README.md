@@ -22,9 +22,8 @@ let Check
     : Type
     = { id : Natural
       , desc : RfcRef
-      , status : Status
-      , code : CodeRefs
-      , test : CodeRefs
+      , implStatus : Status
+      , testStatus : Status
       , notes : Notes
       }
 ```
@@ -33,20 +32,18 @@ and can be instantiated using
 
 ```dhall
 let Check/new
-    : Natural -> RfcRef -> Status -> CodeRefs -> CodeRefs -> Notes -> Check
+    : Natural -> RfcRef -> Status -> Status -> Notes -> Check
     = \(id : Natural) ->
       \(desc : RfcRef) ->
-      \(status : Status) ->
-      \(code : CodeRefs) ->
-      \(test : CodeRefs) ->
+      \(implStatus : Status) ->
+      \(testStatus : Status) ->
       \(notes : Notes) ->
-        { id, desc, status, notes, code, test }
+        { id, desc, impltatus, testStatus, notes }
 ```
 
 Unfortunately the Dhall linter is very keen to strip comments from the source, so the documentation lives here:
 
 - `desc`: The description of the Check in the form of an RfcRef. An RfcRef consists of a piece of text and one or more links into the RFC in the form of the DOM ID of the element in which the check is mandated.
-- `status`: Whether we implemented and or tested the check in OpenMLS
-- `code`: References into the code, describing where the Check is implemented. The type is CodeRefs, which is a list of CodeRef, which contains a string that is a module path.
-- `test`: Same as `code`, but instead of describing where the check is *implemented*, it describes where the check is *tested*.
+- `implStatus`: Whether we implemented the check in OpenMLS
+- `testStatus`: Whether we test that the check is performed in OpenMLS
 - `notes`: Notes about the Check. These contain just text without special meaning.
