@@ -28,9 +28,9 @@ let checks =
               ''
               "section-12.1.4-4.1"
           )
-          types.Status.Missing
-          types.Status.Missing
-          (types.Notes/single "PSK support not implemented")
+          types.Status.Complete
+          types.Status.Unknown
+          (types.Notes/single "ReInit is not implemented")
       , types.Check/new
           2
           ( types.RfcRef/single
@@ -41,9 +41,9 @@ let checks =
               ''
               "section-12.1.4-4.2"
           )
-          types.Status.Missing
-          types.Status.Missing
-          (types.Notes/single "PSK support not implemented")
+          types.Status.Complete
+          types.Status.Unknown
+          (types.Notes/single "Subgroup branching is not implemented")
       , types.Check/new
           3
           ( types.RfcRef/single
