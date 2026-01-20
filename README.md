@@ -10,6 +10,7 @@ This repository compiles the checks mandated by the MLS spec and their status of
 - `views/` contains the dhall code generating the visual representations
 - `views/dashboad.dhall`: generates the dashboard
 - `views/bookmarkletPage.dhall` generates the page containing the bookmarklet for highlighting the RFC
+- `views/gen-check-ids-script.dhall`: generates a shell script to check for missing validation check IDs in the codebase
 
 ## Reference
 

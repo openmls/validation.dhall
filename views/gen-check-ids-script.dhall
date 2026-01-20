@@ -68,6 +68,28 @@ let checkCommands = Prelude.List.map Text Text generateCheckCommand checkIds
 let script =
       ''
       #!/bin/bash
+
+      # Parse arguments
+      if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        cat <<'HELP'
+      Usage: $0 [-h]
+
+      Checks for missing validation check IDs in the codebase.
+
+      This script searches for validation check IDs (e.g., valn0001, valn0002) that are
+      marked as "Complete" in the validation.dhall repository but are not referenced
+      in the current codebase.
+
+      Exit codes:
+        0 - All expected validation check IDs are present
+        1 - One or more validation check IDs are missing
+
+      Options:
+        -h, --help    Show this help message
+      HELP
+        exit 0
+      fi
+
       missing=()
       ${Prelude.Text.concatSep "\n" checkCommands}
       if [ ''${#missing[@]} -gt 0 ]; then
