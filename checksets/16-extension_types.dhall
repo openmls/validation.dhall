@@ -20,15 +20,17 @@ let descText =
             </ul>
             ''
 
-let desc = types.RfcRef/single descText "section-17.3"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-17.3"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               	      LeafNode: application_id, GREASE
                             ''
+              types.Document.MlsRfc
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
@@ -36,10 +38,11 @@ let checks =
           types.Notes/empty
       , types.Check/new
           2
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               GroupInfo: ratchet_tree, external_pub, GREASE
               ''
+              types.Document.MlsRfc
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
@@ -47,10 +50,11 @@ let checks =
           types.Notes/empty
       , types.Check/new
           3
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               GroupContext: required_capabilities, external_senders
               ''
+              types.Document.MlsRfc
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown
@@ -58,10 +62,11 @@ let checks =
           types.Notes/empty
       , types.Check/new
           4
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               KeyPackage: GREASE
               ''
+              types.Document.MlsRfc
               [ "section-17.3-3.3.1", "section-17.3-4" ]
           )
           types.Status.Unknown

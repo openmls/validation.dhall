@@ -12,7 +12,7 @@ let checksets = ../checksets.dhall
 
 let XML = Prelude.XML
 
-let Check/fragments = \(check : Types.Check) -> check.desc.rfcFragments
+let Check/fragments = \(check : Types.Check) -> check.desc.fragments
 
 let CheckSet/fragments =
       \(checkSet : Types.CheckSet) ->

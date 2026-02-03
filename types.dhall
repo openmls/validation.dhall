@@ -41,44 +41,73 @@ let Url/new
     : Text -> Url
     = \(url : Text) -> url
 
-let RfcRef
+let Document
     : Type
-    = { text : Text, rfcFragments : List Text }
+    = < MlsRfc | MlsExtensions | Other >
 
-let RfcRef/single
-    : Text -> Text -> RfcRef
+let Document/show
+    : Document -> Text
+    = \(doc : Document) ->
+        merge
+          { MlsRfc = "RFC 9420"
+          , MlsExtensions = "MLS Extensions"
+          , Other = "Other"
+          }
+          doc
+
+let Document/baseUrl
+    : Document -> Text
+    = \(doc : Document) ->
+        merge
+          { MlsRfc = "https://www.rfc-editor.org/rfc/rfc9420.html"
+          , MlsExtensions =
+              "https://datatracker.ietf.org/doc/html/draft-ietf-mls-extensions"
+          , Other = "https://"
+          }
+          doc
+
+let DocumentRef
+    : Type
+    = { text : Text, document : Document, fragments : List Text }
+
+let DocumentRef/single
+    : Text -> Document -> Text -> DocumentRef
     = \(text : Text) ->
-      \(rfcFragment : Text) ->
-        let rfcFragments = [ rfcFragment ] in { text, rfcFragments }
+      \(doc : Document) ->
+      \(fragment : Text) ->
+        { text, document = doc, fragments = [ fragment ] }
 
-let RfcRef/new
-    : Text -> List Text -> RfcRef
-    = \(text : Text) -> \(rfcFragments : List Text) -> { text, rfcFragments }
+let DocumentRef/new
+    : Text -> Document -> List Text -> DocumentRef
+    = \(text : Text) ->
+      \(doc : Document) ->
+      \(fragments : List Text) ->
+        { text, document = doc, fragments }
 
-let RfcRef/urls
-    : RfcRef -> List Url
-    = \(ref : RfcRef) ->
-        Prelude.List.map
-          Text
-          Url
-          ( \(fragment : Text) ->
-              "https://www.rfc-editor.org/rfc/rfc9420.html#${fragment}"
-          )
-          ref.rfcFragments
+let DocumentRef/urls
+    : DocumentRef -> List Url
+    = \(ref : DocumentRef) ->
+        let baseUrl = Document/baseUrl ref.document
+
+        in  Prelude.List.map
+              Text
+              Url
+              (\(fragment : Text) -> "${baseUrl}#${fragment}")
+              ref.fragments
 
 let Check
     : Type
     = { id : Natural
-      , desc : RfcRef
+      , desc : DocumentRef
       , implStatus : Status
       , testStatus : Status
       , notes : Notes
       }
 
 let Check/new
-    : Natural -> RfcRef -> Status -> Status -> Notes -> Check
+    : Natural -> DocumentRef -> Status -> Status -> Notes -> Check
     = \(id : Natural) ->
-      \(desc : RfcRef) ->
+      \(desc : DocumentRef) ->
       \(implStatus : Status) ->
       \(testStatus : Status) ->
       \(notes : Notes) ->
@@ -86,13 +115,13 @@ let Check/new
 
 let CheckSet
     : Type
-    = { id : Natural, name : Text, desc : RfcRef, checks : List Check }
+    = { id : Natural, name : Text, desc : DocumentRef, checks : List Check }
 
 let CheckSet/new
-    : Natural -> Text -> RfcRef -> List Check -> CheckSet
+    : Natural -> Text -> DocumentRef -> List Check -> CheckSet
     = \(id : Natural) ->
       \(name : Text) ->
-      \(desc : RfcRef) ->
+      \(desc : DocumentRef) ->
       \(checks : List Check) ->
         let checks =
               Prelude.List.map
@@ -138,10 +167,13 @@ in  { Notes
     , Notes/empty
     , Url
     , Url/new
-    , RfcRef
-    , RfcRef/single
-    , RfcRef/new
-    , RfcRef/urls
+    , Document
+    , Document/show
+    , Document/baseUrl
+    , DocumentRef
+    , DocumentRef/single
+    , DocumentRef/new
+    , DocumentRef/urls
     , Check
     , Check/new
     , CheckSet
