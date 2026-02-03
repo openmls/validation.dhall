@@ -137,6 +137,21 @@ let checks =
             types.Status.Complete
             types.Status.Missing
             types.Notes/empty
+      , types/Check/new
+          10
+          ( types.DocumentRef/single
+              ''
+              To that end, it requires that we check that the LeafNodes in KeyPackages
+              that are added support all extensions in the group context[^1]. However, it
+              doesn't seem to require that the same check is mandated for LeafNodes in
+              Update proposals or update paths.
+              ''
+              types.Document.Other
+              "mailarchive.ietf.org/arch/msg/mls/k18P4FP7dfS2cBmP0kL6Uh50-ok/"
+          )
+          types.Status.Complete
+          types.Status.Complete
+          types.Notes.empty
         ]
       : List types.Check
 

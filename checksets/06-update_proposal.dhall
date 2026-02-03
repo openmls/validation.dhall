@@ -31,7 +31,7 @@ let checks =
           types.Status.Unknown
           types.Notes/empty
       , types/Check/new
-          3
+          2
           ( types.DocumentRef/single
               ''
               To that end, it requires that we check that the LeafNodes in KeyPackages
@@ -40,7 +40,7 @@ let checks =
               Update proposals or update paths.
               ''
               types.Document.Other
-              "mailarchive.ietf.org/arch/browse/mls/"
+              "mailarchive.ietf.org/arch/msg/mls/k18P4FP7dfS2cBmP0kL6Uh50-ok/"
           )
           types.Status.Complete
           types.Status.Complete
