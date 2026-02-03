@@ -224,6 +224,19 @@ let checks =
           types.Status.Missing
           types.Status.Missing
           (types.Notes/single "branching isn't currently implemented")
+      , types.Check/new
+          15
+          ( types.RfcRef/single
+              ''
+              A client joining a group MUST verify that it supports every extension in the
+              GroupContext for the group. Otherwise, it MUST treat the enclosing GroupInfo
+              message as invalid and not join the group.
+              ''
+              "section-13.4-5.6"
+          )
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks

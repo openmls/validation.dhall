@@ -27,6 +27,21 @@ let checks =
           types.Status.Complete
           types.Status.Unknown
           types.Notes/empty
+      , types.Check/new
+          2
+          ( types.RfcRef/single
+              ''
+              A client adding a new member to a group MUST verify that the LeafNode for
+              the new member is compatible with the group's extensions. The capabilities
+              field MUST indicate support for each extension in the GroupContext.
+              An Add proposal is invalid if the KeyPackage is invalid according to
+              Section 10.1.
+              ''
+              "section-13.4-5.5"
+          )
+          types.Status.Complete
+          types.Status.Unknown
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks
