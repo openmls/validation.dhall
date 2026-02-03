@@ -14,13 +14,14 @@ let descText =
       </ul>
       ''
 
-let desc = types.RfcRef/single descText "section-7.3"
+let desc = types.DocumentRef/single descText types.Document.MlsRfc "section-7.3"
 
 let checks =
         [ types.Check/new
             1
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 "Verify that the credential in the LeafNode is valid, as described in Section 5.3.1."
+                types.Document.MlsRfc
                 "section-7.3-4.1"
             )
             types.Status.Unknown
@@ -30,8 +31,9 @@ let checks =
             )
         , types.Check/new
             2
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 "Verify that the signature on the LeafNode is valid using signature_key."
+                types.Document.MlsRfc
                 "section-7.3-4.2"
             )
             types.Status.Complete
@@ -39,8 +41,9 @@ let checks =
             types.Notes/empty
         , types.Check/new
             3
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 "Verify that the LeafNode is compatible with the group's parameters. If the GroupContext has a required_capabilities extension, then the required extensions, proposals, and credential types MUST be listed in the LeafNode's capabilities field."
+                types.Document.MlsRfc
                 "section-7.3-4.3"
             )
             types.Status.Complete
@@ -52,7 +55,7 @@ let checks =
             )
         , types.Check/new
             4
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 ''
                 Verify that the credential type is supported by all members of
                 the group, as specified by the capabilities field of each member's
@@ -60,6 +63,7 @@ let checks =
                 indicates support for all the credential types currently in use by
                 other members.
                 ''
+                types.Document.MlsRfc
                 "section-7.3-4.4"
             )
             types.Status.Complete
@@ -67,13 +71,14 @@ let checks =
             types.Notes/empty
         , types.Check/new
             5
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify the `lifetime` field: If the LeafNode appears in a message
                 being sent by the client, e.g., a Proposal or a Commit, then the
                 client MUST verify that the current time is within the range of
                 the lifetime field.
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.1" ]
             )
             types.Status.Complete
@@ -86,7 +91,7 @@ let checks =
             )
         , types.Check/new
             6
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify the `lifetime` field: If instead the LeafNode appears in a
                 message being received by the client, e.g., a Proposal, a Commit,
@@ -96,6 +101,7 @@ let checks =
                 mandatory because the LeafNode might have expired in the time
                 between when the message was sent and when it was received.)
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.5.1", "section-7.3-4.5.2.2" ]
             )
             types.Status.Complete
@@ -103,12 +109,13 @@ let checks =
             types.Notes/empty
         , types.Check/new
             7
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 ''
                 Verify that the extensions in the LeafNode are supported by
                 checking that the ID for each extension in the extensions field
                 is listed in the capabilities.extensions field of the LeafNode.
                 ''
+                types.Document.MlsRfc
                 "section-7.3-4.6"
             )
             types.Status.Complete
@@ -116,11 +123,12 @@ let checks =
             types.Notes/empty
         , types.Check/new
             8
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify the `leaf_node_source` field: If the LeafNode appears in
                 a KeyPackage, verify that leaf_node_source is set to key_package.
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.1" ]
             )
             types.Status.Complete
@@ -128,13 +136,14 @@ let checks =
             types.Notes/empty
         , types.Check/new
             9
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify the `leaf_node_source` field: If the LeafNode appears in an
                 Update proposal, verify that leaf_node_source is set to update and
                 that encryption_key represents a different public key than the
                 encryption_key in the leaf node being replaced by the Update proposal.
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.2" ]
             )
             types.Status.Complete
@@ -142,12 +151,13 @@ let checks =
             types.Notes/empty
         , types.Check/new
             10
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify the `leaf_node_source` field: If the LeafNode appears in the
                 leaf_node value of the UpdatePath in a Commit, verify that
                 leaf_node_source is set to commit.
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.7.1", "section-7.3-4.7.2.3" ]
             )
             types.Status.Complete
@@ -155,11 +165,12 @@ let checks =
             types.Notes/empty
         , types.Check/new
             11
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify that the following fields are unique among the members of
                 the group: `signature_key`
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.1" ]
             )
             types.Status.Complete
@@ -167,11 +178,12 @@ let checks =
             types.Notes/empty
         , types.Check/new
             12
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify that the following fields are unique among the members of
                 the group: `encryption_key`
                 ''
+                types.Document.MlsRfc
                 [ "section-7.3-4.8.1", "section-7.3-4.7.8.2" ]
             )
             types.Status.Complete
@@ -179,10 +191,11 @@ let checks =
             types.Notes/empty
         , types.Check/new
             13
-            ( types.RfcRef/new
+            ( types.DocumentRef/new
                 ''
                 Verify that the credential type used in the LeafNode is included in the credentials field of the capabilities field.
                 ''
+                types.Document.MlsRfc
                 [ "section-7.2-7" ]
             )
             types.Status.Complete

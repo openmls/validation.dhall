@@ -13,16 +13,17 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-7.6"
+let desc = types.DocumentRef/single descText types.Document.MlsRfc "section-7.6"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               Recipients of an MLSMessage MUST verify the signature with the key depending on the
               sender_type of the sender as described above.
               ''
+              types.Document.MlsRfc
               "section-6.1-6"
           )
           types.Status.Complete
@@ -32,11 +33,12 @@ let checks =
           )
       , types.Check/new
           2
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               When decoding a PublicMessage into an AuthenticatedContent, the application MUST check
               membership_tag and MUST check that the FramedContentAuthData is valid.
               ''
+              types.Document.MlsRfc
               "section-6.2-6"
           )
           types.Status.Complete
@@ -44,7 +46,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           3
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               The padding field is set by the sender, by first encoding the content (via the select)
               and the auth field, and then appending the chosen number of zero bytes. A receiver
@@ -56,6 +58,7 @@ let checks =
               check ensures that the padding process is deterministic, so that, for example, padding
               cannot be used as a covert channel.
               ''
+              types.Document.MlsRfc
               "section-6.3.1-3"
           )
           types.Status.Complete
@@ -63,11 +66,12 @@ let checks =
           types.Notes/empty
       , types.Check/new
           4
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               When decoding a PrivateMessageContent, the application MUST check that the
               FramedContentAuthData is valid.
               ''
+              types.Document.MlsRfc
               "section-6.3.1-10"
           )
           types.Status.Complete
@@ -75,11 +79,12 @@ let checks =
           types.Notes/empty
       , types.Check/new
           5
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               When constructing a SenderData object from a Sender object, the sender MUST verify
               Sender.sender_type is member and use Sender.leaf_index for SenderData.leaf_index.
               ''
+              types.Document.MlsRfc
               "section-6.3.2-3"
           )
           types.Status.Complete
@@ -87,12 +92,13 @@ let checks =
           types.Notes/empty
       , types.Check/new
           6
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               When parsing a SenderData struct as part of message decryption, the recipient MUST
               verify that the leaf index indicated in the leaf_index field identifies a non-blank
               node.
               ''
+              types.Document.MlsRfc
               "section-6.3.2-9"
           )
           types.Status.Complete
@@ -100,7 +106,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           7
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               On receiving a FramedContent containing a Proposal, a client MUST verify the signature
               inside FramedContentAuthData and that the epoch field of the enclosing FramedContent
@@ -108,6 +114,7 @@ let checks =
               successful, then the Proposal should be cached in such a way that it can be retrieved
               by hash (as a ProposalOrRef object) in a later Commit message.
               ''
+              types.Document.MlsRfc
               "section-12.1-3"
           )
           types.Status.Complete

@@ -13,16 +13,18 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-12.1.2"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-12.1.2"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               An Update proposal is invalid if the LeafNode is invalid for an Update
               proposal according to Section 7.3.
               ''
+              types.Document.MlsRfc
               "section-12.1.2-3"
           )
           types.Status.Complete

@@ -12,16 +12,18 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-12.1.1"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-12.1.1"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               An Add proposal is invalid if the KeyPackage is invalid according to
               Section 10.1.
               ''
+              types.Document.MlsRfc
               "section-12.1.1-3"
           )
           types.Status.Complete

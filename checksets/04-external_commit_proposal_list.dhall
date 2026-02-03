@@ -20,18 +20,26 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/new descText [ "section-12.2-1", "section-12.2-5" ]
+let desc =
+      types.DocumentRef/new
+        descText
+        types.Document.MlsRfc
+        [ "section-12.2-1", "section-12.2-5" ]
 
 let checks =
       [ types.Check/new
           1
-          (types.RfcRef/single "Exactly one ExternalInit" "section-12.2-6.1")
+          ( types.DocumentRef/single
+              "Exactly one ExternalInit"
+              types.Document.MlsRfc
+              "section-12.2-6.1"
+          )
           types.Status.Complete
           types.Status.Unknown
           types.Notes/empty
       , types.Check/new
           2
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               At most one Remove proposal, with which the joiner removes an old
               version of themselves. If a Remove proposal is present, then the
@@ -41,6 +49,7 @@ let checks =
               LeafNode MUST present a set of identifiers that is acceptable to
               the application for the removed participant.
               ''
+              types.Document.MlsRfc
               "section-12.2-6.2"
           )
           types.Status.Complete
@@ -54,8 +63,9 @@ let checks =
           )
       , types.Check/new
           3
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               "Zero or more PreSharedKey proposals"
+              types.Document.MlsRfc
               "section-12.2-6.3"
           )
           types.Status.Complete
@@ -67,17 +77,22 @@ let checks =
           )
       , types.Check/new
           4
-          (types.RfcRef/single "No other proposals" "section-12.2-6.4")
+          ( types.DocumentRef/single
+              "No other proposals"
+              types.Document.MlsRfc
+              "section-12.2-6.4"
+          )
           types.Status.Complete
           types.Status.Missing
           types.Notes/empty
       , types.Check/new
           5
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               External Commits MUST contain a path field (and is therefore a "full" Commit). The joiner is added at the leftmost free leaf node
               (just as if they were added with an Add proposal), and the path is calculated relative to that leaf node.
               ''
+              types.Document.MlsRfc
               "section-12.4.3.2-11.1"
           )
           types.Status.Complete
@@ -85,11 +100,12 @@ let checks =
           types.Notes/empty
       , types.Check/new
           6
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               The Commit MUST NOT include any proposals by reference, since an external joiner cannot determine the validity of proposals sent
               within the group.
               ''
+              types.Document.MlsRfc
               "section-12.4.3.2-11.2"
           )
           types.Status.Complete
@@ -97,11 +113,12 @@ let checks =
           types.Notes/empty
       , types.Check/new
           7
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               External Commits MUST be signed by the new member. In particular, the signature on the enclosing AuthenticatedContent MUST verify
               using the public key for the credential in the leaf_node of the path field.
               ''
+              types.Document.MlsRfc
               "section-12.4.3.2-11.3"
           )
           types.Status.Complete
@@ -109,10 +126,11 @@ let checks =
           types.Notes/empty
       , types.Check/new
           8
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               The sender type for the AuthenticatedContent encapsulating the external Commit MUST be new_member_commit.
               ''
+              types.Document.MlsRfc
               "section-12.4.3.2-11.5"
           )
           types.Status.Complete

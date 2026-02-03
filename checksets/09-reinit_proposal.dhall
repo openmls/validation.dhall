@@ -14,16 +14,18 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-12.1.5"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-12.1.5"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               A ReInit proposal is invalid if the version field is less than the
               version for the current group.
               ''
+              types.Document.MlsRfc
               "section-12.1.5-3"
           )
           types.Status.Missing

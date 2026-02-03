@@ -82,16 +82,16 @@ let XML/p
           , content = [ XML.text text ]
           }
 
-let RfcRef/links
-    : Types.RfcRef -> XML.Type
-    = \(ref : Types.RfcRef) ->
+let DocumentRef/links
+    : Types.DocumentRef -> XML.Type
+    = \(ref : Types.DocumentRef) ->
         XML/asUl
           "rfcref-links"
           ( Prelude.List.map
               Types.Url
               XML.Type
               (Url/link "ref")
-              (Types.RfcRef/urls ref)
+              (Types.DocumentRef/urls ref)
           )
 
 let Check/tableRow
@@ -132,7 +132,8 @@ let Check/tableRow
               XML.element
                 { name = "td"
                 , attributes = XML.emptyAttributes
-                , content = [ XML/p check.desc.text, RfcRef/links check.desc ]
+                , content =
+                  [ XML/p check.desc.text, DocumentRef/links check.desc ]
                 }
 
         let notesUl =
@@ -233,7 +234,7 @@ let CheckSet/table
                     , attributes = [ XML.attribute "class" "check-set-desc" ]
                     , content =
                       [ XML.rawText checkSet.desc.text
-                      , RfcRef/links checkSet.desc
+                      , DocumentRef/links checkSet.desc
                       ]
                     }
                 , XML.element
