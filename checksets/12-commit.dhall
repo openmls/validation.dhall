@@ -137,7 +137,7 @@ let checks =
             types.Status.Complete
             types.Status.Missing
             types.Notes/empty
-      , types/Check/new
+      , types.Check/new
           10
           ( types.DocumentRef/single
               ''
@@ -151,7 +151,7 @@ let checks =
           )
           types.Status.Complete
           types.Status.Complete
-          types.Notes.empty
+          types.Notes/empty
         ]
       : List types.Check
 

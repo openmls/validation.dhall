@@ -244,12 +244,13 @@ let checks =
           (types.Notes/single "branching isn't currently implemented")
       , types.Check/new
           15
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               A client joining a group MUST verify that it supports every extension in the
               GroupContext for the group. Otherwise, it MUST treat the enclosing GroupInfo
               message as invalid and not join the group.
               ''
+              types.Document.MlsRfc
               "section-13.4-5.6"
           )
           types.Status.Complete

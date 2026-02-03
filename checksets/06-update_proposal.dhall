@@ -30,7 +30,7 @@ let checks =
           types.Status.Complete
           types.Status.Unknown
           types.Notes/empty
-      , types/Check/new
+      , types.Check/new
           2
           ( types.DocumentRef/single
               ''
@@ -44,7 +44,7 @@ let checks =
           )
           types.Status.Complete
           types.Status.Complete
-          types.Notes.empty
+          types.Notes/empty
       ]
 
 in  types.CheckSet/new id name desc checks
