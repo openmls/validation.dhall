@@ -69,6 +69,31 @@ let checks =
           types.Status.Complete
           types.Status.Complete
           types.Notes/empty
+      , types.Check/new
+          5
+          ( types.RfcRef/single
+              ''
+              An external proposal MUST be sent as a PublicMessage object, since the sender
+              will not have the keys necessary to construct a PrivateMessage object.
+              ''
+              "section-12.1.8-4"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
+      , types.Check/new
+          6
+          ( types.RfcRef/single
+              ''
+              The external SenderType requires that signers are pre-provisioned to the
+              clients within a group and can only be used if the external_senders
+              extension is present in the group's GroupContext.
+              ''
+              "section-12.1.8-2"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
       ]
 
 in  types.CheckSet/new id name desc checks
