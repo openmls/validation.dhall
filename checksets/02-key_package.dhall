@@ -13,16 +13,18 @@ let descText =
       </ul
       ''
 
-let desc = types.RfcRef/single descText "section-10.1"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-10.1"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               Verify that the cipher suite and protocol version of the KeyPackage
               match those in the GroupContext.
               ''
+              types.Document.MlsRfc
               "section-10.1-4.1"
           )
           types.Status.Complete
@@ -30,11 +32,12 @@ let checks =
           types.Notes/empty
       , types.Check/new
           2
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               Verify that the leaf_node of the KeyPackage is valid for a KeyPackage
               according to Section 7.3.
               ''
+              types.Document.MlsRfc
               "section-10.1-4.2"
           )
           types.Status.Complete
@@ -47,11 +50,12 @@ let checks =
           )
       , types.Check/new
           3
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               Verify that the signature on the KeyPackage is valid using the public
               key in `leaf_node.credential`.
               ''
+              types.Document.MlsRfc
               "section-10.1-4.3"
           )
           types.Status.Complete
@@ -64,11 +68,12 @@ let checks =
           )
       , types.Check/new
           4
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               Verify that the value of `leaf_node.encryption_key` is different from
               the value of the `init_key` field.
               ''
+              types.Document.MlsRfc
               "section-10.1-4.4"
           )
           types.Status.Complete
@@ -76,12 +81,13 @@ let checks =
           types.Notes/empty
       , types.Check/new
           5
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               If a client receives a KeyPackage carried within an MLSMessage object, then it MUST
               verify that the version field of the KeyPackage has the same value as the version
               field of the MLSMessage.
               ''
+              types.Document.MlsRfc
               "section-10-7"
           )
           types.Status.Complete

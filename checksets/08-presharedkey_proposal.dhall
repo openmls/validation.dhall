@@ -15,17 +15,19 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-12.1.4"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-12.1.4"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               The PreSharedKey proposal is not being processed as part of a
               reinitialization of the group (see Section 11.2), and the PreSharedKeyID
               has psktype set to resumption and usage set to reinit.
               ''
+              types.Document.MlsRfc
               "section-12.1.4-4.1"
           )
           types.Status.Complete
@@ -33,12 +35,13 @@ let checks =
           (types.Notes/single "ReInit is not implemented")
       , types.Check/new
           2
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               The PreSharedKey proposal is not being processed as part of a subgroup
               branching operation (see Section 11.3), and the PreSharedKeyID has
               psktype set to resumption and usage set to branch.
               ''
+              types.Document.MlsRfc
               "section-12.1.4-4.2"
           )
           types.Status.Complete
@@ -46,10 +49,11 @@ let checks =
           (types.Notes/single "Subgroup branching is not implemented")
       , types.Check/new
           3
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               The psk_nonce is not of length KDF.Nh.
               ''
+              types.Document.MlsRfc
               "section-12.1.4-4.3"
           )
           types.Status.Complete

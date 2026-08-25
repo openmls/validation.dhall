@@ -11,18 +11,19 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-7.6"
+let desc = types.DocumentRef/single descText types.Document.MlsRfc "section-7.6"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               For each UpdatePathNode, the resolution of the corresponding copath node MUST exclude all
               new leaf nodes added as part of the current Commit. The length of the encrypted_path_secret
               vector MUST be equal to the length of the resolution of the copath node (excluding new leaf
               nodes), with each ciphertext being the encryption to the respective resolution node.
               ''
+              types.Document.MlsRfc
               "section-7.6-3"
           )
           types.Status.Complete

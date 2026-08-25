@@ -11,15 +11,17 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-12.1.8-1"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-12.1.8-1"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               sender_type: external: The content_type of the message MUST be proposal.
               ''
+              types.Document.MlsRfc
               [ "section-6.1-4", "section-6.1-5.2" ]
           )
           types.Status.Complete
@@ -29,10 +31,11 @@ let checks =
           )
       , types.Check/new
           2
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               sender_type: external: the proposal_type MUST be a value that is allowed for external senders. Only the following types may be sent by an external sender: add, remove, psk, reinit, group_context_extensions.
               ''
+              types.Document.MlsRfc
               [ "section-6.1-4", "section-6.1-5.2", "section-12.1.8-5" ]
           )
           types.Status.Complete
@@ -42,10 +45,11 @@ let checks =
           )
       , types.Check/new
           3
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               sender_type: new_member_proposal: The content_type of the message MUST be proposal.
               ''
+              types.Document.MlsRfc
               [ "section-6.1-4", "section-6.1-5.4" ]
           )
           types.Status.Complete
@@ -55,10 +59,11 @@ let checks =
           )
       , types.Check/new
           4
-          ( types.RfcRef/new
+          ( types.DocumentRef/new
               ''
               sender_type: new_member_proposal: The proposal_type of the Proposal MUST be add.
               ''
+              types.Document.MlsRfc
               [ "section-6.1-4", "section-6.1-5.4" ]
           )
           types.Status.Complete

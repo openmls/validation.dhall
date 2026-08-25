@@ -11,17 +11,19 @@ let descText =
       </p>
       ''
 
-let desc = types.RfcRef/single descText "section-12.1.7"
+let desc =
+      types.DocumentRef/single descText types.Document.MlsRfc "section-12.1.7"
 
 let checks =
       [ types.Check/new
           1
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               A GroupContextExtensions proposal is invalid if it includes a required_capabilities
               extension and some members of the group do not support some of the required
               capabilities (including those added in the same Commit, and excluding those removed).
               ''
+              types.Document.MlsRfc
               "section-12.1.7-3"
           )
           types.Status.Complete
