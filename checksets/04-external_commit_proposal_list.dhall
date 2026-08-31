@@ -140,11 +140,12 @@ let checks =
           )
       , types.Check/new
           9
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               When processing a Commit, both existing and new members MUST use the external
               init secret as described in Section 8.3.
               ''
+              types.Document.MlsRfc
               "section-12.4.3.2-11.4"
           )
           types.Status.Missing
@@ -152,8 +153,9 @@ let checks =
           (types.Notes/single "not yet implemented")
       , types.Check/new
           10
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               "sender_type: new_member_commit: The content_type of the message MUST be commit."
+              types.Document.MlsRfc
               "section-6.1-5.3"
           )
           types.Status.Missing

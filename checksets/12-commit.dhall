@@ -139,12 +139,13 @@ let checks =
             types.Notes/empty
         , types.Check/new
             10
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 ''
                 If the path value is populated, recompute the expected value of parent_hash
                 for the committer's new leaf and verify that it matches the parent_hash
                 value in the supplied leaf_node.
                 ''
+                types.Document.MlsRfc
                 "section-7.9.2-7"
             )
             types.Status.Missing
@@ -152,12 +153,13 @@ let checks =
             (types.Notes/single "not yet implemented")
         , types.Check/new
             11
-            ( types.RfcRef/single
+            ( types.DocumentRef/single
                 ''
                 Use the confirmation_key for the new epoch to compute the confirmation tag
                 for this message, and verify that it is the same as the confirmation_tag
                 field in the FramedContentAuthData object.
                 ''
+                types.Document.MlsRfc
                 "section-12.4.2-2.13"
             )
             types.Status.Missing
