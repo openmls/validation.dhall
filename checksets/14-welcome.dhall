@@ -244,17 +244,59 @@ let checks =
           (types.Notes/single "branching isn't currently implemented")
       , types.Check/new
           15
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               A client joining a group MUST verify that it supports every extension in the
               GroupContext for the group. Otherwise, it MUST treat the enclosing GroupInfo
               message as invalid and not join the group.
               ''
+              types.Document.MlsRfc
               "section-13.4-5.6"
           )
           types.Status.Complete
           types.Status.Unknown
           types.Notes/empty
+      , types.Check/new
+          16
+          ( types.DocumentRef/single
+              ''
+              Verify the integrity of the ratchet tree:
+              The entries in the unmerged_leaves vector of a parent node MUST be sorted in
+              increasing order.
+              ''
+              types.Document.MlsRfc
+              "section-7.1-3"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
+      , types.Check/new
+          17
+          ( types.DocumentRef/single
+              ''
+              Identify a leaf in the tree whose LeafNode is identical to the one in the
+              KeyPackage. If no such field exists, return an error.
+              ''
+              types.Document.MlsRfc
+              "section-12.4.3.1-12.5"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
+      , types.Check/new
+          18
+          ( types.DocumentRef/single
+              ''
+              The sender MUST NOT include blank nodes after the last non-blank node in the
+              ratchet_tree extension. The receiver MUST check that the last node in
+              ratchet_tree is non-blank.
+              ''
+              types.Document.MlsRfc
+              "section-12.4.3.3-6"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
       ]
 
 in  types.CheckSet/new id name desc checks

@@ -138,6 +138,29 @@ let checks =
           ( types.Notes/single
               "This is implicit, because it's the value on which our decision how to process the message is based."
           )
+      , types.Check/new
+          9
+          ( types.DocumentRef/single
+              ''
+              When processing a Commit, both existing and new members MUST use the external
+              init secret as described in Section 8.3.
+              ''
+              types.Document.MlsRfc
+              "section-12.4.3.2-11.4"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
+      , types.Check/new
+          10
+          ( types.DocumentRef/single
+              "sender_type: new_member_commit: The content_type of the message MUST be commit."
+              types.Document.MlsRfc
+              "section-6.1-5.3"
+          )
+          types.Status.Missing
+          types.Status.Missing
+          (types.Notes/single "not yet implemented")
       ]
 
 in  types.CheckSet/new id name desc checks

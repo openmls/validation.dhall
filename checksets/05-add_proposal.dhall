@@ -31,7 +31,7 @@ let checks =
           types.Notes/empty
       , types.Check/new
           2
-          ( types.RfcRef/single
+          ( types.DocumentRef/single
               ''
               A client adding a new member to a group MUST verify that the LeafNode for
               the new member is compatible with the group's extensions. The capabilities
@@ -39,6 +39,7 @@ let checks =
               An Add proposal is invalid if the KeyPackage is invalid according to
               Section 10.1.
               ''
+              types.Document.MlsRfc
               "section-13.4-5.5"
           )
           types.Status.Complete
